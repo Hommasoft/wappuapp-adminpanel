@@ -1,0 +1,14 @@
+{
+  "name": "wappuapp-adminpanel",
+  "version": "1.0.0",
+  "description": "An admin-panel for Futurice's Wappu-app",
+  "scripts": {},
+  "private": true,  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hommasoft/wappuapp-adminpanel.git"
+  },
+  "author": "Hommasoft",
+  "license": "MIT",
+  "homepage": "https://github.com/Hommasoft/wappuapp-adminpanel#readme"
+}

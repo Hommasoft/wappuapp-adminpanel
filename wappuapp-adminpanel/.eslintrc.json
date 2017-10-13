@@ -1,0 +1,31 @@
+{
+  "plugins": ["react"],
+  "env": {
+    "node": true
+  },
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "rules": {
+    "comma-dangle": ["warn", "never"],
+    "arrow-parens": ["warn", "as-needed"],
+    "func-names": "off",
+    "max-len": ["warn", 140],
+    "no-confusing-arrow": ["error", { "allowParens": true }],
+    "import/newline-after-import": "warn",
+    "import/prefer-default-export": "warn",
+    "import/first": "off",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always"
+      }
+    ],
+    "space-before-function-paren": "off"
+  },
+  "extends": [
+    "airbnb-base",
+    "prettier",
+    "prettier/react"
+  ]
+}
