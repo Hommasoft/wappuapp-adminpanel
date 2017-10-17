@@ -1,5 +1,5 @@
 {
-  "plugins": ["react"],
+  "plugins": ["react", "import"],
   "env": {
     "node": true
   },
@@ -23,8 +23,15 @@
     ],
     "space-before-function-paren": "off"
   },
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+    }
+  },
   "extends": [
-    "airbnb-base",
     "prettier",
     "prettier/react"
   ]
