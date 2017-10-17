@@ -26,8 +26,15 @@
   "lint-staged": {
     "gitDir": "../",
     "linters": {
-      "frontend/**/*.json": ["prettier --write", "git add"],
-      "frontend/**/*.js": ["prettier --write", "eslint", "git add"]
+      "frontend/**/*.json": [
+        "prettier --write",
+        "git add"
+      ],
+      "frontend/**/*.js": [
+        "prettier --write",
+        "eslint",
+        "git add"
+      ]
     }
   }
 }

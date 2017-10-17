@@ -60,3 +60,6 @@ typings/
 # MacOS specific
 .DS_Store
 
+# Wappuapp-backend, not officially in this repository
+wappuapp-backend/
+
