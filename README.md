@@ -37,6 +37,8 @@ wappuapp-adminpanel/
 - EditorConfig is used to maintain consistency. Install a plugin for your editor.
 - ESLint is run on both repositories during commits for staged files.
 - Prettier is used on the adminpanel repository, install a plugin for that and enable format on save.
+- To avoid failures with dependencies updating, use NPM's save-exact config
+- `npm config set save-exact true`
 
 ## Docker
 
