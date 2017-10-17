@@ -26,11 +26,11 @@
   "lint-staged": {
     "gitDir": "../",
     "linters": {
-      "src/**/*.json": [
+      "wappuapp-adminpanel/src/**/*.json": [
         "prettier --write",
         "git add"
       ],
-      "src/**/*.js": [
+      "wappuapp-adminpanel/src/**/*.js": [
         "prettier --write",
         "eslint",
         "git add"
