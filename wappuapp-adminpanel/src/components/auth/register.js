@@ -55,33 +55,10 @@ class Register extends Component {
     );
   }
 }
-
-const validate = values => {
-  const errors = {};
-  if (!values.username) {
-    errors.username = 'Username is a must';
-  }
-  if (!values.email) {
-    errors.username = 'Email in a must';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z]{2,4}$/i.test(values.email)) {
-    errors.username = 'Invalid email';
-  }
-  if (!values.password) {
-    errors.password = 'Password is a must';
-  }
-  if (!values.passwordagain) {
-    errors.passwordagain = 'Password is a must';
-  }
-  if (values.password != values.passwordagain) {
-    errors.passwordagain = 'Passwords must match';
-  }
-};
-
 const mapStateToProps = state => {
   return { errorMessage: state.auth.error };
 };
 
 export default reduxForm({
-  form: 'register',
-  validate
+  form: 'register'
 })(connect(mapStateToProps, Auth)(Register));
