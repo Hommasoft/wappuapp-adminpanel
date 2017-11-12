@@ -19,6 +19,18 @@ class Register extends Component {
     }
   }
 
+  renderField({ input, label, type, meta: { error } }) {
+    return (
+      <div>
+        <label>{label}</label>
+        <div>
+          <input classNAme="form-control" {...input} placeholder={label} type={type} />
+          {error && <span className="text-danger">{error}</span>}
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -26,23 +38,19 @@ class Register extends Component {
         <div>Register</div>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <fieldset className="form-group">
-            <label>Username:</label>
-            <Field className="form-control" name="username" component="input" type="text" />
+            <Field name="username" label="Username" component={this.renderField} type="text" />
           </fieldset>
           <fieldset className="form-group">
-            <label>Email:</label>
-            <Field className="form-control" name="email" component="input" type="text" />
+            <Field name="email" label="Email" component={this.renderField} type="text" />
           </fieldset>
           <fieldset className="form-group">
-            <label>Password:</label>
-            <Field className="form-control" name="password" component="input" type="password" />
+            <Field name="password" label="Password" component={this.renderField} type="password" />
           </fieldset>
           <fieldset className="form-group">
-            <label>Password again:</label>
             <Field
-              className="form-control"
               name="passwordagain"
-              component="input"
+              label="Password again"
+              component={this.renderField}
               type="password"
             />
           </fieldset>
@@ -55,10 +63,33 @@ class Register extends Component {
     );
   }
 }
+
+const validate = values => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = 'Email is a must';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email';
+  }
+  if (!values.username) {
+    errors.username = 'Username is a must';
+  }
+  if (!values.password) {
+    errors.password = 'Password is a must';
+  }
+  if (!values.passwordagain) {
+    errors.passwordagain = 'Retyping the password is a must';
+  } else if (values.password !== values.passwordagain) {
+    errors.passwordagain = 'Passwords must match';
+  }
+  return errors;
+};
+
 const mapStateToProps = state => {
   return { errorMessage: state.auth.error };
 };
 
 export default reduxForm({
-  form: 'register'
+  form: 'register',
+  validate
 })(connect(mapStateToProps, Auth)(Register));
