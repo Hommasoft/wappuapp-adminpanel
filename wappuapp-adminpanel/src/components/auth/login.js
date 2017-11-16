@@ -5,12 +5,21 @@ import { connect } from 'react-redux';
 import * as Auth from '../../actions/auth';
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true });
+  }
+
   handleFormSubmit({ username, password }) {
     this.props.login({ username, password });
   }
 
   renderError() {
-    if (this.props.errorMessage) {
+    if (this.state.hasError) {
       return (
         <div className="alert alert-danger">
           <string>Error: {this.props.errorMessage}</string>

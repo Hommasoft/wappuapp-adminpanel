@@ -6,7 +6,6 @@ const api = axios.create({
   baseURL: baseUrl
 });
 
-console.log(baseUrl);
 const request = async (method, opts) => {
   const req = {
     method,

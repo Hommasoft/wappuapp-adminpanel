@@ -33,7 +33,6 @@ export const getProtectedData = () => {
   return async dispatch => {
     try {
       const response = await api.get({ url: 'protected' });
-      console.log(response);
       dispatch({ type: GET_PROTECTED_DATA, payload: response.data });
     } catch (err) {
       return err;
