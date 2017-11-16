@@ -21,7 +21,7 @@ const request = async (method, opts) => {
     const response = await api.request(req);
     return response;
   } catch (err) {
-    throw err;
+    throw err.response.data;
   }
 };
 
