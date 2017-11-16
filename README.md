@@ -45,7 +45,7 @@ wappuapp-adminpanel/
 - EditorConfig for VS Code
 - ESLint
 - markdownlint
-- Prettier - JavaScript formatter (make sure editor.formatOnSave is true)
+- Prettier - JavaScript formatter
 - vscode-icons :3
 
 ## Docker
