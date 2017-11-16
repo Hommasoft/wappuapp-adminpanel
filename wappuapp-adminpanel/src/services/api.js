@@ -1,33 +1,32 @@
 import axios from 'axios';
 
-const buildHeaders = () =>
-  Object.assign({
-    'Content-Type': 'application/json',
-    'x-user-uuid': 'web',
-    authorization: localStorage.getItem('token')
-  });
+const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:9000/api' : '/api';
 
 const api = axios.create({
-  baseURL: '/api'
+  baseURL: baseUrl
 });
 
+console.log(baseUrl);
 const request = async (method, opts) => {
   const req = {
     method,
     url: opts.url,
-    params: opts.params,
     data: opts.data,
-    headers: buildHeaders
+    headers: {
+      'Content-Type': 'application/json',
+      'x-user-uuid': 'web',
+      authorization: localStorage.getItem('token')
+    }
   };
   try {
     const response = await api.request(req);
-    return response.data;
+    return response;
   } catch (err) {
     throw err;
   }
 };
 
-export const get = async opts => request('get', { url: opts.url, params: opts.params });
+export const get = async opts => request('get', { url: opts.url });
 
 export const post = async opts => request('post', opts);
 

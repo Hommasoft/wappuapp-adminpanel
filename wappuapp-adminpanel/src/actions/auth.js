@@ -1,46 +1,30 @@
 import * as api from '../services/api';
+import History from '../history';
 
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_PROTECTED_DATA } from './types';
 
 export const login = ({ username, password }) => {
   return async dispatch => {
-    function success(response) {
-      dispatch({ type: AUTH_USER });
-      localStorage.setItem('token', response.data.token);
-      History.push('/protected');
-      return success;
-    }
-    function error(err) {
-      console.log(err);
-      dispatch(authError(err));
-      return error;
-    }
     try {
-      const response = await api.post('login', { username, password });
-      return success(response);
+      const response = await api.post({ url: 'login', data: { username, password } });
+      localStorage.setItem('token', response.data.token);
+      dispatch({ type: AUTH_USER });
+      History.push('/protected');
     } catch (err) {
-      return error(err);
+      dispatch(authError(err));
     }
   };
 };
 
 export const register = ({ username, email, password }) => {
   return async dispatch => {
-    function success(response) {
-      dispatch({ type: AUTH_USER });
-      localStorage.setItem('token', response.data.token);
-      History.push('/protected');
-      return success;
-    }
-    function error(err) {
-      dispatch(authError(err));
-      return error;
-    }
     try {
-      const response = await api.post('register', { username, email, password });
-      return success(response);
+      const response = await api.post({ url: 'register', data: { username, email, password } });
+      localStorage.setItem('token', response.data.token);
+      dispatch({ type: AUTH_USER });
+      History.push('/protected');
     } catch (err) {
-      return error(err);
+      dispatch(authError(err));
     }
   };
 };
@@ -48,7 +32,8 @@ export const register = ({ username, email, password }) => {
 export const getProtectedData = () => {
   return async dispatch => {
     try {
-      const response = await api.get('protected');
+      const response = await api.get({ url: 'protected' });
+      console.log(response);
       dispatch({ type: GET_PROTECTED_DATA, payload: response.data });
     } catch (err) {
       return err;

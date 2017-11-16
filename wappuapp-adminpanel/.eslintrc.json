@@ -7,10 +7,9 @@
     "import/resolver": "webpack"
   },
   "rules": {
-    "arrow-parens": ["warn", "as-needed"],    
+    "arrow-parens": ["warn", "as-needed"],
     "comma-dangle": ["warn", "never"],
     "import/newline-after-import": "warn",
-    "import/prefer-default-export": "warn",
     "import/first": "off",
     "import/order": [
       "error",
@@ -27,12 +26,9 @@
     "ecmaVersion": 8,
     "sourceType": "module",
     "ecmaFeatures": {
-        "jsx": true,
-        "modules": true
+      "jsx": true,
+      "modules": true
     }
   },
-  "extends": [
-    "prettier",
-    "prettier/react"
-  ]
+  "extends": ["prettier", "prettier/react"]
 }
