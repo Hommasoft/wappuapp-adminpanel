@@ -24,7 +24,7 @@ class Register extends Component {
       <div>
         <label>{label}</label>
         <div>
-          <input classNAme="form-control" {...input} placeholder={label} type={type} />
+          <input className="form-control" {...input} placeholder={label} type={type} />
           {error && <span className="text-danger">{error}</span>}
         </div>
       </div>
