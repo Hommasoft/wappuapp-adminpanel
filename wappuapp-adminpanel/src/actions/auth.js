@@ -20,7 +20,6 @@ export const register = ({ username, email, password }) => {
   return async dispatch => {
     try {
       const response = await api.post({ url: 'register', data: { username, email, password } });
-      console.log(response.data.token);
       localStorage.setItem('token', response.data.token);
       dispatch({ type: AUTH_USER });
       History.push('/protected');
