@@ -1,36 +1,34 @@
 import axios from 'axios';
 
-import History from '../history';
+const buildHeaders = () =>
+  Object.assign({
+    'Content-Type': 'application/json',
+    'x-user-uuid': 'web',
+    authorization: localStorage.getItem('token')
+  });
 
-const Backend_URL = 'http://localhost:3001/api';
+const api = axios.create({
+  baseURL: '/api'
+});
 
-export async function post(endpoint, data) {
+const request = async (method, opts) => {
+  const req = {
+    method,
+    url: opts.url,
+    params: opts.params,
+    data: opts.data,
+    headers: buildHeaders
+  };
   try {
-    const response = await axios.post(`${Backend_URL}/${endpoint}`, data, {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-user-uuid': 'web',
-        authorization: localStorage.getItem('token')
-      }
-    });
-    return response;
-  } catch (err) {
-    console.log(err); // Tästä tulee <unavailable>
-    throw new Error(err);
-  }
-}
-
-export async function get(endpoint) {
-  try {
-    const response = await axios.get(`${Backend_URL}/${endpoint}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-user-uuid': 'web',
-        authorization: localStorage.getItem('token')
-      }
-    });
-    return response;
+    const response = await api.request(req);
+    return response.data;
   } catch (err) {
     throw err;
   }
-}
+};
+
+export const get = async opts => request('get', { url: opts.url, params: opts.params });
+
+export const post = async opts => request('post', opts);
+
+export const del = async opts => request('delete', opts);

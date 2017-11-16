@@ -7,11 +7,8 @@
     "import/resolver": "webpack"
   },
   "rules": {
+    "arrow-parens": ["warn", "as-needed"],    
     "comma-dangle": ["warn", "never"],
-    "arrow-parens": ["warn", "as-needed"],
-    "func-names": "off",
-    "max-len": ["warn", 140],
-    "no-confusing-arrow": ["error", { "allowParens": true }],
     "import/newline-after-import": "warn",
     "import/prefer-default-export": "warn",
     "import/first": "off",
@@ -21,10 +18,13 @@
         "newlines-between": "always"
       }
     ],
+    "func-names": "off",
+    "max-len": ["warn", 140],
+    "no-confusing-arrow": ["error", { "allowParens": true }],
     "space-before-function-paren": "off"
   },
   "parserOptions": {
-    "ecmaVersion": 7,
+    "ecmaVersion": 8,
     "sourceType": "module",
     "ecmaFeatures": {
         "jsx": true,
