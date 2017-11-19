@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
-
-import logo from './logo.svg';
-import './App.css';
+import { Col, Jumbotron, Nav, NavItem, Row, Grid } from 'react-bootstrap';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Grid>
+        <Row>
+          <Col md={8} sm={3}>
+            <Jumbotron>
+              <Nav bsStyle="tabs">
+                <NavItem href="/">Front</NavItem>
+                <NavItem href="/login">Login</NavItem>
+                <NavItem href="/register">Register</NavItem>
+                <NavItem href="/logout">Logout</NavItem>
+                <NavItem href="/protected">Protected</NavItem>
+                <NavItem href="/feed">Feed</NavItem>
+              </Nav>
+              <Row>
+                <Col md={12}>{this.props.children}</Col>
+              </Row>
+            </Jumbotron>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

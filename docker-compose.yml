@@ -33,7 +33,7 @@ services:
       - POSTGRES_USER=wappu
       - POSTGRES_PASSWORD=wappu
     ports:
-      - "5432:5432"
+      - "4432:5432"
     volumes:
       - database:/var/lib/postgresql/data
 

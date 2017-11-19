@@ -1,9 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+import { BrowserRouter, Router, Switch } from 'react-router-dom';
 
+import History from './history';
+import Routes from './routes';
+import { AUTH_USER } from './actions/types';
+import rootReducer from './reducers';
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const createStoreWithMiddleWare = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleWare(rootReducer);
+
+const token = localStorage.getItem('token');
+
+if (token) {
+  store.dispatch({ type: AUTH_USER });
+}
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <Router history={History}>
+        <Switch>
+          <Routes />
+        </Switch>
+      </Router>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();

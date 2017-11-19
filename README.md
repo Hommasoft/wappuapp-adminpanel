@@ -40,6 +40,14 @@ wappuapp-adminpanel/
 - To avoid failures with dependencies updating, use NPM's save-exact config
 - `npm config set save-exact true`
 
+## VSCode required / recommended plugins
+
+- EditorConfig for VS Code
+- ESLint
+- markdownlint
+- Prettier - JavaScript formatter
+- vscode-icons :3
+
 ## Docker
 
 Connecting to a Docker container to access bash:
