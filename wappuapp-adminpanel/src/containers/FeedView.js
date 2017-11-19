@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import {} from 'react-bootstarp'
+import {} from 'react-bootstarp';
 
 class FeedView extends Component {
   render() {
-    return (
-      
-    );
+    return <p>Dummy container</p>;
   }
 }
 
