@@ -2,8 +2,7 @@ import * as api from '../services/api';
 
 import { GET_FEED_REQUEST, GET_FEED_SUCCESS, GET_FEED_FAILURE, SET_FEED } from './types';
 
-export const fetchFeed = () => (dispatch, getState) => {
-  dispatch({ type: GET_FEED_REQUEST });
+export const fetchFeed = () => {
   return async dispatch => {
     try {
       const response = await api.get({ url: 'feed' });
