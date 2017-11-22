@@ -16,7 +16,7 @@ const Routes = () => {
       <Route exact path="/register" component={Register} />
       <Route exact path="/logout" component={Logout} />
       <Route exact path="/protected" component={RequireAuth(Protected)} />
-      <Route exact path="/feed" component={RequireAuth(FeedList)} />
+      <Route exact path="/feed" component={FeedList} />
     </App>
   );
 };

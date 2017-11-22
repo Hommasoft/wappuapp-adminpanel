@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { ListGroup } from 'react-bootstrap';
 
 import * as Feed from '../../actions/feed.js';
 import loadingStates from '../../constants/loadingstates';
 
-import { FeedItem } from './feeditem';
+import FeedItem from './feeditem.js';
 
 class FeedList extends Component {
   componentDidMount() {
@@ -18,11 +19,12 @@ class FeedList extends Component {
       case loadingStates.FAILED:
         return <p>ERROR</p>;
       default:
+        let items = this.props.feed;
         return (
-          <div>
-            <p>Oispafeediä</p>
-            <p>{this.props.feed}</p>
-          </div>
+          <ListGroup componentClass="feeditem">
+            <p>Onnex on feediä :D</p>
+            {items.map(item => <FeedItem item={item} key={item.id} />)}
+          </ListGroup>
         );
     }
   }
@@ -33,9 +35,8 @@ class FeedList extends Component {
 }
 const mapStateToProps = state => {
   return {
-    /*
-    feed: state.feed.get('list'),
-    feedListState: state.feed.get('listState') */
+    feed: state.feed.feed,
+    feedListState: state.feed.listState
   };
 };
 
