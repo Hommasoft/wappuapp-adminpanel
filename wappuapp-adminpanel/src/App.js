@@ -14,6 +14,7 @@ class App extends Component {
                 <NavItem href="/register">Register</NavItem>
                 <NavItem href="/logout">Logout</NavItem>
                 <NavItem href="/protected">Protected</NavItem>
+                <NavItem href="/protectedadmin">ProtectedAdmin</NavItem>
                 <NavItem href="/feed">Feed</NavItem>
               </Nav>
               <Row>
