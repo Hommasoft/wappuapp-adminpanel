@@ -9,7 +9,7 @@ import History from './history';
 import Routes from './routes';
 import { AUTH_USER } from './actions/types';
 import rootReducer from './reducers';
-import './index.css';
+import './assets/css/index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 const createStoreWithMiddleWare = applyMiddleware(reduxThunk)(createStore);

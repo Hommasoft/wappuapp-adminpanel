@@ -4,7 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 
 import time from '../../utils/time';
 
-import './feed.css';
+import '../../assets/css/feed.css';
 
 class FeedItem extends Component {
   render() {
@@ -21,16 +21,16 @@ class FeedItem extends Component {
       <div className="feedItemContainer">
         <div className="feedItem">
           <Row>
-            <Col md={6} className="userInfo">
-              <h3 className="user">{item.author.name}</h3>
-              <p className="team">{item.author.team}</p>
+            <Col xs={6} sm={6} md={6}>
+              <h3 className="itemUser">{item.author.name}</h3>
+              <h5 className="itemTeam">{item.author.team}</h5>
             </Col>
-            <Col md={6}>
-              <h3 className="timeInfo">{ago}</h3>
+            <Col xs={6} sm={6} md={6}>
+              <h3 className="itemTime">{ago}</h3>
             </Col>
           </Row>
           <Row>
-            <Col md={12}>
+            <Col>
               {isItemImage ? (
                 <img className="itemImage" src={imgUrl} />
               ) : (
@@ -39,11 +39,11 @@ class FeedItem extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
-              <p className="score"> {item.votes} </p>
+            <Col xs={6} sm={6} md={6}>
+              <h3 className="itemScore"> {item.votes} </h3>
             </Col>
-            <Col md={6}>
-              <p className="timeInfo"> Comments: 0 </p>
+            <Col xs={6} sm={6} md={6} className="timeInfo">
+              <h3 className="itemComments"> Comments: 0 </h3>
             </Col>
           </Row>
         </div>

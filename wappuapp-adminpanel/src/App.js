@@ -6,7 +6,7 @@ class App extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={8} sm={3}>
+          <Col md={10} sm={12}>
             <Jumbotron>
               <Nav bsStyle="tabs">
                 <NavItem href="/">Front</NavItem>
@@ -17,7 +17,7 @@ class App extends Component {
                 <NavItem href="/feed">Feed</NavItem>
               </Nav>
               <Row>
-                <Col md={12}>{this.props.children}</Col>
+                <Col xs={12}>{this.props.children}</Col>
               </Row>
             </Jumbotron>
           </Col>

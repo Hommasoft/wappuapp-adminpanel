@@ -10,28 +10,25 @@
   margin-top: 3%;
 }
 
-.user {
-  font-family: sans-serif;
+.itemUser {
   font-size: 20px;
   margin-bottom: 0;
   margin-top: 0;
 }
 
-.team {
-  font-size: 10px;
+.itemTeam {
+  font-size: 12px;
   color: grey;
 }
   
-.timeInfo {
+.itemTime {
   text-align: right;
   color: grey;
   font-size: 12px;
   margin-top: 0;
-  margin-bottom: 0;
 }
   
 .itemText {
-  font-size: 20px;
   text-align: center;
 }
 
@@ -39,8 +36,14 @@
   width: 100%;  
 }
 
-.score {
+.itemComments {
+  text-align: right;
+  font-size: 14px;
   margin-bottom: 0;
-  margin-top: 0;
+  color: grey;
 }
-  
+
+.itemScore {
+  margin-bottom: 0;
+  font-size: 14px;
+}
