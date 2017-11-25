@@ -22,7 +22,6 @@ class FeedList extends Component {
         let items = this.props.feed;
         return (
           <ListGroup componentClass="feeditem">
-            <p>Onnex on feediä :D</p>
             {items.map(item => <FeedItem item={item} key={item.id} />)}
           </ListGroup>
         );
