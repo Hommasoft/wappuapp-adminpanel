@@ -40,6 +40,11 @@ wappuapp-adminpanel/
 - To avoid failures with dependencies updating, use NPM's save-exact config
 - `npm config set save-exact true`
 
+## Deployment to heroku
+
+- Make sure you're on the branch and commit you want to deploy to the development server
+- Run `sh tools/deploy-adminpanel-to-heroku.sh`
+
 ## VSCode required / recommended plugins
 
 - EditorConfig for VS Code
@@ -60,4 +65,10 @@ Stopping containers:
 
 ```sh
 docker-compose -p [project name] down
+```
+
+Cleaning EVERYTHING docker-related:
+
+```sh
+sh tools/kill-it-with-fire.sh
 ```
