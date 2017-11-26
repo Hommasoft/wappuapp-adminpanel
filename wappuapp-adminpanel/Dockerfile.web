@@ -21,4 +21,4 @@ WORKDIR /usr/share/nginx/html
 COPY nginx/nginx.heroku.conf /etc/nginx/nginx.conf.template
 COPY --from=builder  /app/build .
 
-CMD /bin/sh -c "envsubst '\$BACKEND_URI,\$PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
+CMD /bin/sh -c "envsubst '\$BACKEND_URI,\$PORT,\$FRONTEND_URI' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
