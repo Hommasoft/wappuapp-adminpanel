@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListGroup } from 'react-bootstrap';
 
-import * as Feed from '../../actions/feed.js';
+import * as Feed from '../../actions/feed';
 import loadingStates from '../../constants/loadingstates';
 
-import FeedItem from './feeditem.js';
+import FeedItem from './feeditem';
 
 class FeedList extends Component {
   componentDidMount() {
