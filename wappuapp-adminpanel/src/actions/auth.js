@@ -40,6 +40,17 @@ export const getProtectedData = () => {
   };
 };
 
+export const getAdminProtectedData = () => {
+  return async dispatch => {
+    try {
+      const response = await api.get({ url: 'protectedadmin' });
+      dispatch({ type: GET_PROTECTED_DATA, payload: response.data });
+    } catch (err) {
+      return err;
+    }
+  };
+};
+
 export const logout = () => {
   localStorage.removeItem('token');
   return { type: UNAUTH_USER };
