@@ -43,6 +43,7 @@ wappuapp-adminpanel/
 ## Deployment to heroku
 
 - Make sure you're on the branch and commit you want to deploy to the development server
+- Make sure you're logged into Heroku by running `heroku login`
 - Run `sh tools/deploy-adminpanel-to-heroku.sh`
 
 ## VSCode required / recommended plugins
