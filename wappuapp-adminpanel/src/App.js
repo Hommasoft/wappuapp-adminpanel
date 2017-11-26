@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
+import { Col, Jumbotron, Nav, NavItem, Row, Grid } from 'react-bootstrap';
 
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="jumbotron">
-              <div>
-                <a href="/">Front</a>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-                <a href="/logout">Logout</a>
-                <a href="/protected">Protected</a>
-              </div>
-              <div className="row">
-                <div className="col-md-12">{this.props.children}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Grid>
+        <Row>
+          <Col md={10} sm={12}>
+            <Jumbotron>
+              <Nav bsStyle="tabs">
+                <NavItem href="/">Front</NavItem>
+                <NavItem href="/login">Login</NavItem>
+                <NavItem href="/register">Register</NavItem>
+                <NavItem href="/logout">Logout</NavItem>
+                <NavItem href="/protected">Protected</NavItem>
+                <NavItem href="/feed">Feed</NavItem>
+              </Nav>
+              <Row>
+                <Col xs={12}>{this.props.children}</Col>
+              </Row>
+            </Jumbotron>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }
