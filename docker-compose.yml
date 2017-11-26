@@ -16,7 +16,7 @@ services:
   backend:
     build: 
       context: wappuapp-backend
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     command: [npm, run, start]
     ports:
       - "9000:80"
