@@ -9,6 +9,7 @@ import Register from '../components/auth/register';
 import Protected from '../components/protected';
 import FeedList from '../components/feed/feedlist';
 import ProtectedAdmin from '../components/protectedadmin';
+import ModList from '../components/admin/moderatorlist';
 
 const Routes = () => {
   return (
@@ -19,6 +20,7 @@ const Routes = () => {
       <Route exact path="/protected" component={RequireAuth(Protected)} />
       <Route exact path="/protectedadmin" component={RequireAuth(ProtectedAdmin)} />
       <Route exact path="/feed" component={RequireAuth(FeedList)} />
+      <Route exact path="/moderatorlist" component={ModList} />
     </App>
   );
 };
