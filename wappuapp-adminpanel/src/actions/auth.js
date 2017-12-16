@@ -3,11 +3,12 @@ import History from '../history';
 
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_PROTECTED_DATA } from './types';
 
-export const login = ({ username, password }) => {
+export const login = ({ email, password }) => {
   return async dispatch => {
     try {
-      const response = await api.post({ url: 'login', data: { username, password } });
+      const response = await api.post({ url: 'login', data: { email, password } });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('admin', response.data.admin);
       dispatch({ type: AUTH_USER });
       History.push('/protected');
     } catch (err) {
@@ -53,6 +54,7 @@ export const getAdminProtectedData = () => {
 
 export const logout = () => {
   localStorage.removeItem('token');
+  localStorage.removeItem('admin');
   return { type: UNAUTH_USER };
 };
 

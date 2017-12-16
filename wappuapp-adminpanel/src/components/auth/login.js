@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import * as Auth from '../../actions/auth';
 
 class Login extends Component {
-  handleFormSubmit({ username, password }) {
-    this.props.login({ username, password });
+  handleFormSubmit({ email, password }) {
+    this.props.login({ email, password });
   }
 
   renderError() {
@@ -26,8 +26,8 @@ class Login extends Component {
         <div>Login</div>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <fieldset className="form-group">
-            <label>Username:</label>
-            <Field className="form-control" name="username" component="input" type="text" />
+            <label>Email:</label>
+            <Field className="form-control" name="email" component="input" type="text" />
           </fieldset>
           <fieldset className="form-group">
             <label>Password:</label>

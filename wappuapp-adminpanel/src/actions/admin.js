@@ -8,7 +8,6 @@ export const getModlist = () => {
     try {
       const response = await api.get({ url: 'moderatorlist' });
       dispatch({ type: GET_PROTECTED_DATA, payload: response.data });
-      console.log('asd');
     } catch (err) {
       return err;
     }
