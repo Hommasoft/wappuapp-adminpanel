@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Table } from 'react-bootstrap';
 
 import * as Admin from '../../actions/admin';
 
@@ -22,9 +23,8 @@ class Moderatorlist extends Component {
     if (!this.props.protected) {
       return <div>Table empty</div>;
     }
-    console.log(this.props);
     return (
-      <table class="table table-striped">
+      <Table striped>
         <thead>
           <tr>
             <th>ID</th>
@@ -81,7 +81,7 @@ class Moderatorlist extends Component {
             );
           })}
         </tbody>
-      </table>
+      </Table>
     );
   }
 

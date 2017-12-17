@@ -4,7 +4,7 @@ import { Col, Jumbotron, Nav, NavItem, Row, Grid } from 'react-bootstrap';
 class App extends Component {
   render() {
     const admin = localStorage.getItem('admin');
-    if (admin == 'true') {
+    if (admin === 'true') {
       return (
         <Grid>
           <Row>
@@ -15,6 +15,7 @@ class App extends Component {
                   <NavItem href="/logout">Logout</NavItem>
                   <NavItem href="/feed">Feed</NavItem>
                   <NavItem href="/moderatorlist">ModList</NavItem>
+                  <NavItem href="/changepassword">ChangePassword</NavItem>
                 </Nav>
                 <Row>
                   <Col xs={12}>{this.props.children}</Col>
@@ -34,6 +35,7 @@ class App extends Component {
                   <NavItem href="/">Front</NavItem>
                   <NavItem href="/logout">Logout</NavItem>
                   <NavItem href="/feed">Feed</NavItem>
+                  <NavItem href="/changepassword">ChangePassword</NavItem>
                 </Nav>
                 <Row>
                   <Col xs={12}>{this.props.children}</Col>
