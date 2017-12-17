@@ -17,10 +17,10 @@ export const login = ({ email, password }) => {
   };
 };
 
-export const register = ({ username, email, password }) => {
+export const addmoderator = ({ email }) => {
   return async dispatch => {
     try {
-      await api.post({ url: 'addmoderator', data: { email, password } });
+      const response = await api.post({ url: 'addmoderator', data: { email } });
       History.push('/moderatorlist');
     } catch (err) {
       dispatch(authError(err.error));
@@ -29,6 +29,10 @@ export const register = ({ username, email, password }) => {
 };
 
 export const changepassword = ({ password }) => {
+  const token = History.location.search.substr(7);
+  if (token) {
+    localStorage.setItem('token', token);
+  }
   return async dispatch => {
     try {
       await api.post({ url: 'changepassword', data: { password } });
