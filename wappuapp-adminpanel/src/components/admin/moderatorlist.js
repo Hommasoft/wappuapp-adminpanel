@@ -24,7 +24,7 @@ class Moderatorlist extends Component {
     }
     console.log(this.props);
     return (
-      <table>
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>ID</th>
@@ -45,13 +45,37 @@ class Moderatorlist extends Component {
                 <td>{data.activated + ''}</td>
                 <td>{data.admin + ''}</td>
                 <td>
-                  <button className="btn btn-primary">^</button>
+                  <button
+                    className="btn btn-primary"
+                    type="submit"
+                    onClick={() => {
+                      this.props.promoteMod(data.id);
+                    }}
+                  >
+                    ^
+                  </button>
                 </td>
                 <td>
-                  <button className="btn btn-primary">v</button>
+                  <button
+                    className="btn btn-primary"
+                    type="submit"
+                    onClick={() => {
+                      this.props.demoteMod(data.id);
+                    }}
+                  >
+                    v
+                  </button>
                 </td>
                 <td>
-                  <button className="btn btn-primary">X</button>
+                  <button
+                    className="btn btn-primary"
+                    type="submit"
+                    onClick={() => {
+                      this.props.deleteMod(data.id);
+                    }}
+                  >
+                    X
+                  </button>
                 </td>
               </tr>
             );

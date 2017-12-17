@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import * as Auth from '../../actions/auth';
 
 class Register extends Component {
-  handleFormSubmit({ username, email, password }) {
-    this.props.register({ username, email, password });
+  handleFormSubmit({ email, password }) {
+    this.props.register({ email, password });
   }
 
   renderError() {
@@ -38,9 +38,6 @@ class Register extends Component {
         <div>Register</div>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <fieldset className="form-group">
-            <Field name="username" label="Username" component={this.renderField} type="text" />
-          </fieldset>
-          <fieldset className="form-group">
             <Field name="email" label="Email" component={this.renderField} type="text" />
           </fieldset>
           <fieldset className="form-group">
@@ -70,9 +67,6 @@ const validate = values => {
     errors.email = 'Please enter a valid email';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email';
-  }
-  if (!values.username) {
-    errors.username = 'Please enter a username';
   }
   if (!values.password) {
     errors.password = 'Please enter a password';

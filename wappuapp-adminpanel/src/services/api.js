@@ -27,6 +27,8 @@ const request = async (method, opts) => {
 
 export const get = async opts => request('get', { url: opts.url });
 
+export const put = async opts => request('put', { url: opts.url });
+
 export const post = async opts => request('post', opts);
 
 export const del = async opts => request('delete', opts);

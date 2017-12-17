@@ -12,7 +12,6 @@ class App extends Component {
               <Jumbotron>
                 <Nav bsStyle="tabs">
                   <NavItem href="/">Front</NavItem>
-                  <NavItem href="/register">Register</NavItem>
                   <NavItem href="/logout">Logout</NavItem>
                   <NavItem href="/feed">Feed</NavItem>
                   <NavItem href="/moderatorlist">ModList</NavItem>

@@ -13,3 +13,36 @@ export const getModlist = () => {
     }
   };
 };
+
+export function demoteMod(id) {
+  return async dispatch => {
+    try {
+      const response = await api.put({ url: 'demote/' + id });
+      History.push('/moderatorlist');
+    } catch (err) {
+      return err;
+    }
+  };
+}
+
+export function promoteMod(id) {
+  return async dispatch => {
+    try {
+      const response = await api.put({ url: 'promote/' + id });
+      History.push('/moderatorlist');
+    } catch (err) {
+      return err;
+    }
+  };
+}
+
+export function deleteMod(id) {
+  return async dispatch => {
+    try {
+      const response = await api.del({ url: 'deletemoderator/' + id });
+      History.push('/moderatorlist');
+    } catch (err) {
+      return err;
+    }
+  };
+}

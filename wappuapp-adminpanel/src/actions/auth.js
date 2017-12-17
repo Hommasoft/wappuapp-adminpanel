@@ -10,7 +10,7 @@ export const login = ({ email, password }) => {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('admin', response.data.admin);
       dispatch({ type: AUTH_USER });
-      History.push('/protected');
+      History.push('/feed');
     } catch (err) {
       dispatch(authError(err));
     }
@@ -20,34 +20,10 @@ export const login = ({ email, password }) => {
 export const register = ({ username, email, password }) => {
   return async dispatch => {
     try {
-      const response = await api.post({ url: 'register', data: { username, email, password } });
-      localStorage.setItem('token', response.data.token);
-      dispatch({ type: AUTH_USER });
-      History.push('/protected');
+      const response = await api.post({ url: 'addmoderator', data: { email, password } });
+      History.push('/moderatorlist');
     } catch (err) {
       dispatch(authError(err.error));
-    }
-  };
-};
-
-export const getProtectedData = () => {
-  return async dispatch => {
-    try {
-      const response = await api.get({ url: 'protected' });
-      dispatch({ type: GET_PROTECTED_DATA, payload: response.data });
-    } catch (err) {
-      return err;
-    }
-  };
-};
-
-export const getAdminProtectedData = () => {
-  return async dispatch => {
-    try {
-      const response = await api.get({ url: 'protectedadmin' });
-      dispatch({ type: GET_PROTECTED_DATA, payload: response.data });
-    } catch (err) {
-      return err;
     }
   };
 };
