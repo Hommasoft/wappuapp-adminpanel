@@ -8,6 +8,11 @@ import loadingStates from '../../constants/loadingstates';
 import FeedItem from './feeditem';
 
 class FeedList extends Component {
+  constructor(props) {
+    super(props);
+    this.renderFeed = this.renderFeed.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchFeed();
   }
@@ -22,7 +27,9 @@ class FeedList extends Component {
         let items = this.props.feed;
         return (
           <ListGroup componentClass="feeditem">
-            {items.map(item => <FeedItem item={item} key={item.id} />)}
+            {items.map(item => (
+              <FeedItem item={item} key={item.id} removeFeedItem={this.props.removeFeedItem} />
+            ))}
           </ListGroup>
         );
     }

@@ -1,4 +1,10 @@
-import { SET_FEED, GET_FEED_REQUEST, GET_FEED_SUCCESS, GET_FEED_FAILURE } from '../actions/types';
+import {
+  SET_FEED,
+  GET_FEED_REQUEST,
+  GET_FEED_SUCCESS,
+  GET_FEED_FAILURE,
+  REMOVE_FEED_ITEM
+} from '../actions/types';
 import loadingStates from '../constants/loadingstates';
 
 const initialState = {
@@ -24,6 +30,16 @@ export const feed = (state = initialState, action) => {
       return Object.assign({}, state, {
         listState: loadingStates.FAILED
       });
+    case REMOVE_FEED_ITEM:
+      const orgFeed = state.get('feed');
+      const index = orgFeed.findIndex(element => element.id === action.item);
+      if (index < 0) {
+        return state;
+      } else {
+        return Object.assign({}, state, {
+          feed: orgFeed.delete(index)
+        });
+      }
     default:
       return state;
   }

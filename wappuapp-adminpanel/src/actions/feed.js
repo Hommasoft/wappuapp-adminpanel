@@ -1,8 +1,14 @@
 import * as api from '../services/api';
 
-import { GET_FEED_REQUEST, GET_FEED_SUCCESS, GET_FEED_FAILURE, SET_FEED } from './types';
+import {
+  GET_FEED_REQUEST,
+  GET_FEED_SUCCESS,
+  GET_FEED_FAILURE,
+  SET_FEED,
+  REMOVE_FEED_ITEM
+} from './types';
 
-export const fetchFeed = () => {
+const fetchFeed = () => {
   return async dispatch => {
     try {
       dispatch({ type: GET_FEED_REQUEST });
@@ -14,3 +20,16 @@ export const fetchFeed = () => {
     }
   };
 };
+
+const removeFeedItem = id => {
+  return async dispatch => {
+    try {
+      const response = await api.del({ url: 'admin/feed/' + id });
+      dispatch({ type: REMOVE_FEED_ITEM, item: id });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export { fetchFeed, removeFeedItem };
