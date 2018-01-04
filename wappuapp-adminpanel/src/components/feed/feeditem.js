@@ -10,18 +10,18 @@ import '../../assets/css/feed.css';
 class FeedItem extends Component {
   constructor(props) {
     super(props);
-    this.removeThisItem = this.removeThisItem.bind(this);
+    this.onClickRemove = this.onClickRemove.bind(this);
   }
 
-  removeThisItem() {
-    this.props.removeFeedItem(this.props.item.id);
+  onClickRemove() {
+    this.props.removeItem(this.props.item.id);
   }
 
   render() {
     const { item } = this.props;
     console.log(item);
     let imgUrl;
-    const title = <img src={kebabmenu} width={20} height={20} />;
+    const title = <img src={kebabmenu} width={20} height={20} alt="Menu" />;
     //for testing without imgix
     const ago = time.getTimeAgo(item.createdAt);
     const isItemImage = item.type === 'IMAGE';
@@ -45,7 +45,7 @@ class FeedItem extends Component {
                 bsStyle="link"
                 bsSize="xsmall"
               >
-                <MenuItem onSelect={this.removeThisItem}>Delete</MenuItem>
+                <MenuItem onSelect={this.onClickRemove}>Delete</MenuItem>
               </DropdownButton>
               <h3 className="itemTime">{ago}</h3>
             </Col>

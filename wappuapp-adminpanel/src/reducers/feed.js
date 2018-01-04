@@ -31,14 +31,13 @@ export const feed = (state = initialState, action) => {
         listState: loadingStates.FAILED
       });
     case REMOVE_FEED_ITEM:
-      const orgFeed = state.get('feed');
+      let orgFeed = state.feed;
       const index = orgFeed.findIndex(element => element.id === action.item);
       if (index < 0) {
         return state;
       } else {
-        return Object.assign({}, state, {
-          feed: orgFeed.delete(index)
-        });
+        orgFeed.splice(index, 1);
+        return { state, feed: orgFeed };
       }
     default:
       return state;
