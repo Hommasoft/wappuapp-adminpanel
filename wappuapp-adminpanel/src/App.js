@@ -4,6 +4,7 @@ import { Col, Jumbotron, Nav, NavItem, Row, Grid } from 'react-bootstrap';
 class App extends Component {
   render() {
     const admin = localStorage.getItem('admin');
+    console.log(admin);
     if (admin === 'true') {
       return (
         <Grid>
@@ -25,7 +26,7 @@ class App extends Component {
           </Row>
         </Grid>
       );
-    } else if (admin === false) {
+    } else if (admin === 'false') {
       return (
         <Grid>
           <Row>
