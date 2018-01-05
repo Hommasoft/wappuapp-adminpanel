@@ -31,14 +31,9 @@ export const feed = (state = initialState, action) => {
         listState: loadingStates.FAILED
       });
     case REMOVE_FEED_ITEM:
-      let orgFeed = state.feed;
-      const index = orgFeed.findIndex(element => element.id === action.item);
-      if (index < 0) {
-        return state;
-      } else {
-        orgFeed.splice(index, 1);
-        return { state, feed: orgFeed };
-      }
+      return {
+        feed: state.feed.filter(item => action.item !== item.id)
+      };
     default:
       return state;
   }

@@ -18,10 +18,6 @@ class FeedList extends Component {
     this.props.fetchFeed();
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
-
   removeItem(id) {
     this.props.removeFeedItem(id);
   }
