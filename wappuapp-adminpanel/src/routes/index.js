@@ -9,10 +9,12 @@ import Register from '../components/auth/register';
 import FeedList from '../components/feed/feedlist';
 import ModList from '../components/admin/moderatorlist';
 import ChangePassword from '../components/auth/changepassword';
+import Front from '../components/front';
 
 const Routes = () => {
   return (
     <App>
+      <Route exact path="/" component={Front} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={RequireAuth(Register)} />
       <Route exact path="/logout" component={Logout} />
