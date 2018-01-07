@@ -17,5 +17,8 @@
     "postinstall": "cd wappuapp-adminpanel && npm install && cd ../wappuapp-backend && npm install",
     "precommit": "cd wappuapp-adminpanel && npm run precommit",
     "lint": "cd wappuapp-adminpanel && npm run eslint"
+  },
+  "dependencies": {
+    "react-confirm-alert": "1.0.8"
   }
 }
