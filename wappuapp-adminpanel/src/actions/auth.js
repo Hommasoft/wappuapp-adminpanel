@@ -1,58 +1,52 @@
 import * as api from '../services/api';
 import History from '../history';
 
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, GET_PROTECTED_DATA } from './types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
 
-export const login = ({ username, password }) => {
+export const login = ({ email, password }) => {
   return async dispatch => {
     try {
-      const response = await api.post({ url: 'login', data: { username, password } });
+      const response = await api.post({ url: 'login', data: { email, password } });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('admin', response.data.admin);
       dispatch({ type: AUTH_USER });
-      History.push('/protected');
+      History.push('/feed');
     } catch (err) {
       dispatch(authError(err));
     }
   };
 };
 
-export const register = ({ username, email, password }) => {
+export const addmoderator = ({ email }) => {
   return async dispatch => {
     try {
-      const response = await api.post({ url: 'register', data: { username, email, password } });
-      localStorage.setItem('token', response.data.token);
-      dispatch({ type: AUTH_USER });
-      History.push('/protected');
+      const response = await api.post({ url: 'addmoderator', data: { email } });
+      History.push('/moderatorlist');
     } catch (err) {
       dispatch(authError(err.error));
     }
   };
 };
 
-export const getProtectedData = () => {
+export const changepassword = ({ password }) => {
+  const token = History.location.search.substr(7);
+  if (token) {
+    localStorage.setItem('token', token);
+  }
   return async dispatch => {
     try {
-      const response = await api.get({ url: 'protected' });
-      dispatch({ type: GET_PROTECTED_DATA, payload: response.data });
+      await api.post({ url: 'changepassword', data: { password } });
+      History.push('/logout');
     } catch (err) {
-      return err;
-    }
-  };
-};
-
-export const getAdminProtectedData = () => {
-  return async dispatch => {
-    try {
-      const response = await api.get({ url: 'protectedadmin' });
-      dispatch({ type: GET_PROTECTED_DATA, payload: response.data });
-    } catch (err) {
-      return err;
+      dispatch(authError(err.error));
     }
   };
 };
 
 export const logout = () => {
   localStorage.removeItem('token');
+  localStorage.removeItem('admin');
+  History.push('/');
   return { type: UNAUTH_USER };
 };
 
