@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import * as Auth from '../../actions/auth';
 
 class Register extends Component {
-  handleFormSubmit({ username, email, password }) {
-    this.props.register({ username, email, password });
+  handleFormSubmit({ email }) {
+    this.props.addmoderator({ email });
   }
 
   renderError() {
@@ -35,28 +35,14 @@ class Register extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <div>Register</div>
+        <div>Add new moderator</div>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-          <fieldset className="form-group">
-            <Field name="username" label="Username" component={this.renderField} type="text" />
-          </fieldset>
           <fieldset className="form-group">
             <Field name="email" label="Email" component={this.renderField} type="text" />
           </fieldset>
-          <fieldset className="form-group">
-            <Field name="password" label="Password" component={this.renderField} type="password" />
-          </fieldset>
-          <fieldset className="form-group">
-            <Field
-              name="passwordagain"
-              label="Password again"
-              component={this.renderField}
-              type="password"
-            />
-          </fieldset>
           {this.renderError()}
           <button action="submit" className="btn btn-primary">
-            Register
+            Add new moderator
           </button>
         </form>
       </div>
@@ -70,17 +56,6 @@ const validate = values => {
     errors.email = 'Please enter a valid email';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email';
-  }
-  if (!values.username) {
-    errors.username = 'Please enter a username';
-  }
-  if (!values.password) {
-    errors.password = 'Please enter a password';
-  }
-  if (!values.passwordagain) {
-    errors.passwordagain = 'Please re-type your password';
-  } else if (values.password !== values.passwordagain) {
-    errors.passwordagain = 'Passwords must match';
   }
   return errors;
 };
