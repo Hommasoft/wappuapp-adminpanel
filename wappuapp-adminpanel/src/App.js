@@ -1,30 +1,112 @@
 import React, { Component } from 'react';
-import { Col, Jumbotron, Nav, NavItem, Row, Grid } from 'react-bootstrap';
+import {
+  Col,
+  Jumbotron,
+  Nav,
+  NavItem,
+  Row,
+  Grid,
+  NavDropdown,
+  MenuItem,
+  Well
+} from 'react-bootstrap';
+
+import History from './history';
 
 class App extends Component {
   render() {
-    return (
-      <Grid>
-        <Row>
-          <Col md={10} sm={12}>
-            <Jumbotron>
-              <Nav bsStyle="tabs">
-                <NavItem href="/">Front</NavItem>
-                <NavItem href="/login">Login</NavItem>
-                <NavItem href="/register">Register</NavItem>
-                <NavItem href="/logout">Logout</NavItem>
-                <NavItem href="/protected">Protected</NavItem>
-                <NavItem href="/protectedadmin">ProtectedAdmin</NavItem>
-                <NavItem href="/feed">Feed</NavItem>
-              </Nav>
-              <Row>
-                <Col xs={12}>{this.props.children}</Col>
-              </Row>
-            </Jumbotron>
-          </Col>
-        </Row>
-      </Grid>
-    );
+    const admin = localStorage.getItem('admin');
+    const currentPage = History.location.pathname;
+    if (admin === 'true') {
+      return (
+        <Grid>
+          <Row>
+            <Col md={10} sm={12}>
+              <Jumbotron>
+                <Nav justified bsStyle="tabs" activeKey={currentPage}>
+                  <NavItem eventKey="/" href="/">
+                    Front
+                  </NavItem>
+                  <NavItem eventKey="/feed" href="/feed">
+                    Feed
+                  </NavItem>
+                  <NavItem eventKey="/moderatorlist" href="/moderatorlist">
+                    ModList
+                  </NavItem>
+                  <NavDropdown title="Account" id="nav-dropdown">
+                    <MenuItem href="/changepassword">Change Password</MenuItem>
+                    <MenuItem href="/logout">Logout</MenuItem>
+                  </NavDropdown>
+                </Nav>
+                <br />
+                <br />
+                <Row>
+                  <Col xs={12}>
+                    <Well>{this.props.children}</Well>
+                  </Col>
+                </Row>
+              </Jumbotron>
+            </Col>
+          </Row>
+        </Grid>
+      );
+    } else if (admin === 'false') {
+      return (
+        <Grid>
+          <Row>
+            <Col md={10} sm={12}>
+              <Jumbotron>
+                <Nav justified bsStyle="tabs" activeKey={currentPage}>
+                  <NavItem eventKey="/" href="/">
+                    Front
+                  </NavItem>
+                  <NavItem eventKey="/feed" href="/feed">
+                    Feed
+                  </NavItem>
+                  <NavDropdown title="Account" id="nav-dropdown">
+                    <MenuItem href="/changepassword">Change Password</MenuItem>
+                    <MenuItem href="/logout">Logout</MenuItem>
+                  </NavDropdown>
+                </Nav>
+                <br />
+                <br />
+                <Row>
+                  <Col xs={12}>
+                    <Well>{this.props.children}</Well>
+                  </Col>
+                </Row>
+              </Jumbotron>
+            </Col>
+          </Row>
+        </Grid>
+      );
+    } else {
+      return (
+        <Grid>
+          <Row>
+            <Col md={10} sm={12}>
+              <Jumbotron>
+                <Nav justified bsStyle="tabs" activeKey={currentPage}>
+                  <NavItem eventKey="/" href="/">
+                    Front
+                  </NavItem>
+                  <NavItem eventKey="/login" href="/login">
+                    Login
+                  </NavItem>
+                </Nav>
+                <br />
+                <br />
+                <Row>
+                  <Col xs={12}>
+                    <Well>{this.props.children}</Well>
+                  </Col>
+                </Row>
+              </Jumbotron>
+            </Col>
+          </Row>
+        </Grid>
+      );
+    }
   }
 }
 
