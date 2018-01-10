@@ -24,7 +24,7 @@ const fetchFeed = () => {
 const removeFeedItem = id => {
   return async dispatch => {
     try {
-      await api.del({ url: 'admin/feed/' + id });
+      await api.put({ url: 'admin/feed/' + id });
       dispatch({ type: REMOVE_FEED_ITEM, item: id });
     } catch (error) {
       console.log(error);
