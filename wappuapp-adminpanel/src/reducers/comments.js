@@ -8,14 +8,16 @@ import loadingStates from '../constants/loadingstates';
 
 const initialState = {
   comments: [],
-  listState: loadingStates.NONE
+  listState: loadingStates.NONE,
+  visibleComment: undefined
 };
 
 export const comments = (state = initialState, action) => {
   switch (action.type) {
     case SET_COMMENTS:
       return Object.assign({}, state, {
-        comments: action.comments
+        comments: action.comments,
+        visibleComment: action.open_id
       });
     case GET_COMMENTS_REQUEST:
       return Object.assign({}, state, {

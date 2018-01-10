@@ -12,7 +12,7 @@ const fetchComments = id => {
     try {
       dispatch({ type: GET_COMMENTS_REQUEST });
       const response = await api.get({ url: 'feed?parent_id=' + id });
-      dispatch({ type: SET_COMMENTS, id: response.data });
+      dispatch({ type: SET_COMMENTS, comments: response.data, open_id: id });
       dispatch({ type: GET_COMMENTS_SUCCESS });
     } catch (error) {
       dispatch({ type: GET_COMMENTS_FAILURE, error: true });
