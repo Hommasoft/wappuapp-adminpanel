@@ -22,21 +22,64 @@ class Moderatorlist extends Component {
     }
   }
 
+  renderPromoteButton(data) {
+    return (
+      <button
+        className="btn btn-primary"
+        type="submit"
+        onClick={() => {
+          confirmAlert({
+            title: 'Confirm',
+            message: 'Are you sure you want to promote ' + data.email + '?',
+            confirmLabel: 'Confirm',
+            cancelLabel: 'Cancel',
+            onConfirm: () => this.props.promoteMod(data.id),
+            onCancel: () => History.push('/moderatorlist')
+          });
+        }}
+      >
+        Promote
+      </button>
+    );
+  }
+
+  renderDemoteButton(data) {
+    return (
+      <button
+        className="btn btn-primary"
+        type="submit"
+        onClick={() => {
+          confirmAlert({
+            title: 'Confirm',
+            message: 'Are you sure you want to demote ' + data.email + '?',
+            confirmLabel: 'Confirm',
+            cancelLabel: 'Cancel',
+            onConfirm: () => this.props.demoteMod(data.id),
+            onCancel: () => History.push('/moderatorlist')
+          });
+        }}
+      >
+        Demote
+      </button>
+    );
+  }
+
   renderData() {
     if (!this.props.protected) {
       return <div>Table empty</div>;
     }
     return (
-      <Table striped bordered condensed hover>
+      <Table striped hover>
         <thead>
           <tr>
             <th>ID</th>
             <th>Email</th>
-            <th>Activated</th>
-            <th>Admin</th>
-            <th>Promote</th>
-            <th>Demote</th>
-            <th>Delete</th>
+            <th>Status</th>
+            <th>
+              <center>Activated</center>
+            </th>
+            <th> </th>
+            <th> </th>
           </tr>
         </thead>
         <tbody>
@@ -45,43 +88,12 @@ class Moderatorlist extends Component {
               <tr key={data.id}>
                 <td>{data.id}</td>
                 <td>{data.email}</td>
-                <td>{data.activated + ''}</td>
-                <td>{data.admin + ''}</td>
-                <td align="center">
-                  <button
-                    className="btn btn-primary"
-                    type="submit"
-                    onClick={() => {
-                      confirmAlert({
-                        title: 'Confirm',
-                        message: 'Are you sure you want to promote ' + data.email + '?',
-                        confirmLabel: 'Confirm',
-                        cancelLabel: 'Cancel',
-                        onConfirm: () => this.props.promoteMod(data.id),
-                        onCancel: () => History.push('/moderatorlist')
-                      });
-                    }}
-                  >
-                    <Glyphicon glyph="circle-arrow-up" />
-                  </button>
+                <td>{data.admin ? 'admin' : 'moderator'}</td>
+                <td>
+                  <center>{data.activated ? 'x' : 'o'}</center>
                 </td>
                 <td align="center">
-                  <button
-                    className="btn btn-primary"
-                    type="submit"
-                    onClick={() => {
-                      confirmAlert({
-                        title: 'Confirm',
-                        message: 'Are you sure you want to demote ' + data.email + '?',
-                        confirmLabel: 'Confirm',
-                        cancelLabel: 'Cancel',
-                        onConfirm: () => this.props.demoteMod(data.id),
-                        onCancel: () => History.push('/moderatorlist')
-                      });
-                    }}
-                  >
-                    <Glyphicon glyph="circle-arrow-down" />
-                  </button>
+                  {data.admin ? this.renderDemoteButton(data) : this.renderPromoteButton(data)}
                 </td>
                 <td align="center">
                   <button
@@ -98,7 +110,7 @@ class Moderatorlist extends Component {
                       });
                     }}
                   >
-                    <Glyphicon glyph="remove-sign" />
+                    Delete
                   </button>
                 </td>
               </tr>
