@@ -22,10 +22,11 @@
 }
   
 .itemTime {
-  text-align: right;
+  float: right;
   color: grey;
   font-size: 12px;
-  margin-top: 0;
+  margin-top: 0px;
+  margin-right: 10px;
 }
   
 .itemText {
@@ -46,4 +47,8 @@
 .itemScore {
   margin-bottom: 0;
   font-size: 14px;
+}
+
+.dropdown {
+  float: right;
 }

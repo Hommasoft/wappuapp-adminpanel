@@ -6,3 +6,4 @@ export const GET_FEED_REQUEST = 'get_feed_request';
 export const GET_FEED_SUCCESS = 'get_feed_success';
 export const GET_FEED_FAILURE = 'get_feed_failure';
 export const SET_FEED = 'SET_FEED';
+export const REMOVE_FEED_ITEM = 'remove_feed_item';
