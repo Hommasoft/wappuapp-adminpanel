@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import time from '../../utils/time';
 import kebabmenu from '../../assets/img/kebabmenu.svg';
+import commentArrowDown from '../../assets/img/ic_keyboard_arrow_down_black_24px.svg';
+import commentArrowUp from '../../assets/img/ic_keyboard_arrow_up_black_24px.svg';
 import * as Comments from '../../actions/comments';
 import loadingStates from '../../constants/loadingstates';
 
@@ -48,16 +50,13 @@ class FeedItem extends Component {
   renderComments(commentListState) {
     switch (commentListState) {
       case loadingStates.LOADING:
+        console.log('loading');
         return <p>Loading</p>;
       case loadingStates.FAILED:
         return <p>ERROR</p>;
       default:
-        let items = this.props.comments;
-        console.log(items);
-        if (items.length === 0) {
-          return <p> No comments.</p>;
-        }
-        return <CommentList comments={items} />;
+        console.log(this.props.comments);
+        return <CommentList comments={this.props.comments} />;
     }
   }
 
@@ -66,6 +65,7 @@ class FeedItem extends Component {
     console.log(item);
     let imgUrl;
     let commentComponent = null;
+    let commentArrow = <img src={commentArrowDown} width={20} height={20} alt="openComments" />;
     const title = <img src={kebabmenu} width={20} height={20} alt="Menu" />;
     const ago = time.getTimeAgo(item.createdAt);
     //for testing without imgix
@@ -75,49 +75,59 @@ class FeedItem extends Component {
     }
     if (this.props.visibleComment === item.id && this.state.isVisible) {
       commentComponent = this.renderComments(this.props.commentListState);
+      commentArrow = <img src={commentArrowUp} width={20} height={20} alt="closeComments" />;
     }
 
     return (
-      <div className="feedItemContainer">
-        <div className="feedItem">
-          <Row>
-            <Col xs={6} sm={6} md={6}>
-              <h3 className="itemUser">{item.author.name}</h3>
-              <h5 className="itemTeam">{item.author.team}</h5>
-            </Col>
-            <Col xs={6} sm={6} md={6}>
-              <DropdownButton
-                key={item.id}
-                id={'dropdownmenu' + item.id}
-                title={title}
-                noCaret={true}
-                bsStyle="link"
-                bsSize="xsmall"
-              >
-                <MenuItem onSelect={this.onClickRemove}>Delete</MenuItem>
-              </DropdownButton>
-              <h3 className="itemTime">{ago}</h3>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              {isItemImage ? (
-                <img className="itemImage" src={imgUrl} alt="Feed Item" />
-              ) : (
-                <p className="itemText">{item.text}</p>
-              )}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={6} sm={6} md={6}>
-              <h3 className="itemScore"> {item.votes} </h3>
-            </Col>
-            <Col xs={6} sm={6} md={6} className="timeInfo">
-              <Button onClick={this.onClickOpenComments}> Comments: 0 </Button>
-            </Col>
-          </Row>
+      <div>
+        <div className="feedItemContainer">
+          <div className="feedItem">
+            <Row>
+              <Col xs={6} sm={6} md={6}>
+                <h3 className="itemUser">{item.author.name}</h3>
+                <h5 className="itemTeam">{item.author.team}</h5>
+              </Col>
+              <Col xs={6} sm={6} md={6}>
+                <DropdownButton
+                  key={item.id}
+                  id={'dropdownmenu' + item.id}
+                  title={title}
+                  noCaret={true}
+                  bsStyle="link"
+                  bsSize="xsmall"
+                >
+                  <MenuItem onSelect={this.onClickRemove}>Delete</MenuItem>
+                </DropdownButton>
+                <h3 className="itemTime">{ago}</h3>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {isItemImage ? (
+                  <img className="itemImage" src={imgUrl} alt="Feed Item" />
+                ) : (
+                  <p className="itemText">{item.text}</p>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={6} sm={6} md={6}>
+                <h3 className="itemScore"> {item.votes} </h3>
+              </Col>
+              <Col xs={6} sm={6} md={6} className="timeInfo">
+                <Button
+                  onClick={this.onClickOpenComments}
+                  bsStyle="small"
+                  className="commentButton"
+                >
+                  {' '}
+                  Comments: 0 {commentArrow}
+                </Button>
+              </Col>
+            </Row>
+          </div>
         </div>
-        <div className="commentsContainer">{commentComponent}</div>
+        <div>{commentComponent}</div>
       </div>
     );
   }
