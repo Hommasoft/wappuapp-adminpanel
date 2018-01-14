@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import '../../assets/css/login.css';
 
 import * as Auth from '../../actions/auth';
 
@@ -22,16 +23,25 @@ class Login extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div>
-        <div>Login</div>
+      <div align="center">
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <fieldset className="form-group">
-            <label>Email:</label>
-            <Field className="form-control" name="email" component="input" type="text" />
+            <Field
+              className="form-control"
+              name="email"
+              component="input"
+              type="text"
+              placeholder="Email"
+            />
           </fieldset>
           <fieldset className="form-group">
-            <label>Password:</label>
-            <Field className="form-control" name="password" component="input" type="password" />
+            <Field
+              className="form-control"
+              name="password"
+              component="input"
+              type="password"
+              placeholder="Password"
+            />
           </fieldset>
           {this.renderError()}
           <button action="submit" className="btn btn-primary">
