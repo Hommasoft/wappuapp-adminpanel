@@ -23,22 +23,33 @@ export const addmoderator = ({ email }) => {
       const response = await api.post({ url: 'addmoderator', data: { email } });
       History.push('/moderatorlist');
     } catch (err) {
-      dispatch(authError(err.error));
+      dispatch(authError(err));
     }
   };
 };
 
-export const changepassword = ({ password }) => {
+export const changepassword = ({ newpassword, oldpassword }) => {
+  return async dispatch => {
+    try {
+      await api.post({ url: 'changepassword', data: { newpassword, oldpassword } });
+      History.push('/account');
+    } catch (err) {
+      dispatch(authError(err));
+    }
+  };
+};
+
+export const activateaccount = ({ password }) => {
   const token = History.location.search.substr(7);
   if (token) {
     localStorage.setItem('token', token);
   }
   return async dispatch => {
     try {
-      await api.post({ url: 'changepassword', data: { password } });
+      await api.post({ url: 'activateaccount', data: { password } });
       History.push('/logout');
     } catch (err) {
-      dispatch(authError(err.error));
+      dispatch(authError(err));
     }
   };
 };
