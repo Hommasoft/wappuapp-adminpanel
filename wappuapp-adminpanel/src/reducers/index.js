@@ -4,12 +4,14 @@ import { reducer as formReducer } from 'redux-form';
 import { reducer as authReducer } from './auth';
 import { reducer as protectedReducer } from './protected';
 import { feed as feedReducer } from './feed';
+import { comments as commentsReducer } from './comments.js';
 
 const rootReducer = combineReducers({
   form: formReducer,
   auth: authReducer,
   protected: protectedReducer,
-  feed: feedReducer
+  feed: feedReducer,
+  comments: commentsReducer
 });
 
 export default rootReducer;
