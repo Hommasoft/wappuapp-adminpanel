@@ -11,10 +11,15 @@ class FeedItem extends Component {
   constructor(props) {
     super(props);
     this.onClickRemove = this.onClickRemove.bind(this);
+    this.onClickBan = this.onClickBan.bind(this);
   }
 
   onClickRemove() {
     this.props.removeItem(this.props.item.id);
+  }
+
+  onClickBan() {
+    this.props.banUser(this.props.item.author.id);
   }
 
   render() {
@@ -46,6 +51,7 @@ class FeedItem extends Component {
                 bsSize="xsmall"
               >
                 <MenuItem onSelect={this.onClickRemove}>Delete</MenuItem>
+                <MenuItem onSelect={this.onClickBan}>Ban user</MenuItem>
               </DropdownButton>
               <h3 className="itemTime">{ago}</h3>
             </Col>

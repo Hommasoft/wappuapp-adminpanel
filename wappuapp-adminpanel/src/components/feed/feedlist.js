@@ -12,6 +12,7 @@ class FeedList extends Component {
     super(props);
     this.renderFeed = this.renderFeed.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.banUserid = this.banUserid.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +21,10 @@ class FeedList extends Component {
 
   removeItem(id) {
     this.props.removeFeedItem(id);
+  }
+
+  banUserid(uuid) {
+    this.props.banUser(uuid);
   }
 
   renderFeed(feedListState) {
@@ -32,7 +37,14 @@ class FeedList extends Component {
         let items = this.props.feed;
         return (
           <ListGroup componentClass="feeditem">
-            {items.map(item => <FeedItem item={item} key={item.id} removeItem={this.removeItem} />)}
+            {items.map(item => (
+              <FeedItem
+                item={item}
+                key={item.id}
+                removeItem={this.removeItem}
+                banUser={this.banUserid}
+              />
+            ))}
           </ListGroup>
         );
     }
