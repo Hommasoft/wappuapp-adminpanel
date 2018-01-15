@@ -34,7 +34,7 @@ class App extends Component {
                     ModList
                   </NavItem>
                   <NavDropdown title="Account" id="nav-dropdown">
-                    <MenuItem href="/changepassword">Change Password</MenuItem>
+                    <MenuItem href="/account">Account Page</MenuItem>
                     <MenuItem href="/logout">Logout</MenuItem>
                   </NavDropdown>
                 </Nav>
@@ -64,7 +64,7 @@ class App extends Component {
                     Feed
                   </NavItem>
                   <NavDropdown title="Account" id="nav-dropdown">
-                    <MenuItem href="/changepassword">Change Password</MenuItem>
+                    <MenuItem href="/account">Account Page</MenuItem>
                     <MenuItem href="/logout">Logout</MenuItem>
                   </NavDropdown>
                 </Nav>
