@@ -61,7 +61,7 @@ class FeedItem extends Component {
         return <p>ERROR</p>;
       default:
         console.log(this.props.comments);
-        return <CommentList comments={this.props.comments} />;
+        return <CommentList comments={this.props.comments} banUser={this.props.banUser} />;
     }
   }
 
@@ -121,11 +121,7 @@ class FeedItem extends Component {
                 <h3 className="itemScore"> {item.votes} </h3>
               </Col>
               <Col xs={6} sm={6} md={6} className="timeInfo">
-                <Button
-                  onClick={this.onClickOpenComments}
-                  bsStyle="small"
-                  className="commentButton"
-                >
+                <Button onClick={this.onClickOpenComments} bsSize="small" className="commentButton">
                   {' '}
                   Comments: 0 {commentArrow}
                 </Button>
