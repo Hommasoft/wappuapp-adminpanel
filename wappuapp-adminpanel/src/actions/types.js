@@ -11,3 +11,4 @@ export const GET_COMMENTS_REQUEST = 'get_comments_request';
 export const GET_COMMENTS_SUCCESS = 'get_comments_success';
 export const GET_COMMENTS_FAILURE = 'get_comments_failure';
 export const SET_COMMENTS = 'set_comments';
+export const EVENT_ERROR = 'event_error';

@@ -11,6 +11,8 @@ import ModList from '../components/admin/moderatorlist';
 import ActivateAccount from '../components/auth/activateaccount';
 import Front from '../components/front';
 import AccountPage from '../components/auth/accountpage';
+import Events from '../components/events/event';
+import AddEvent from '../components/events/addevent';
 
 const Routes = () => {
   return (
@@ -23,6 +25,8 @@ const Routes = () => {
       <Route exact path="/feed" component={RequireAuth(FeedList)} />
       <Route exact path="/moderatorlist" component={RequireAuth(ModList)} />
       <Route exact path="/account" component={RequireAuth(AccountPage)} />
+      <Route exact path="/event" component={RequireAuth(Events)} />
+      <Route exact path="/addevent" component={RequireAuth(AddEvent)} />
     </App>
   );
 };
