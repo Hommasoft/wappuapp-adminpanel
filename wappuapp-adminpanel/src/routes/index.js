@@ -13,6 +13,7 @@ import Front from '../components/front';
 import AccountPage from '../components/auth/accountpage';
 import Events from '../components/events/event';
 import AddEvent from '../components/events/addevent';
+import UpdateEvent from '../components/events/updateevent';
 
 const Routes = () => {
   return (
@@ -27,6 +28,7 @@ const Routes = () => {
       <Route exact path="/account" component={RequireAuth(AccountPage)} />
       <Route exact path="/event" component={RequireAuth(Events)} />
       <Route exact path="/addevent" component={RequireAuth(AddEvent)} />
+      <Route exact path="/updateevent/:id" component={RequireAuth(UpdateEvent)} />
     </App>
   );
 };
