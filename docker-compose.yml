@@ -3,7 +3,7 @@
 version: '2'
 services:
   adminpanel:
-    build: 
+    build:
       context: wappuapp-adminpanel
       dockerfile: Dockerfile.dev
     environment:
@@ -14,7 +14,7 @@ services:
       - backend
 
   backend:
-    build: 
+    build:
       context: wappuapp-backend
       dockerfile: Dockerfile
     command: [npm, run, start]
@@ -24,12 +24,13 @@ services:
       - NODE_ENV=development
       - DATABASE_URL=postgres://wappu:wappu@database/wappuapp
       - DEFAULT_EVENT_RADIUS=0.400
+      - CRYPTO_PASSWORD=notagoodpassword
     volumes:
       - ./wappuapp-backend/src:/app/src
     links:
       - database
       - redis
-    
+
   database:
     image: postgres:9.6.3-alpine
     environment:
