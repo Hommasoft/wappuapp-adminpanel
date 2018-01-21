@@ -79,7 +79,7 @@ class AccountPage extends Component {
 
 const validate = values => {
   const errors = {};
-  if (values.newpassword != values.newpasswordagain) {
+  if (values.newpassword !== values.newpasswordagain) {
     errors.newpasswordagain = 'New passwords need to match';
   }
   return errors;
