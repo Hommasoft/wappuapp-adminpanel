@@ -1,7 +1,7 @@
 import * as api from '../services/api';
 import History from '../history';
 
-import { EVENT_ERROR, GET_EVENTS } from './types';
+import { EVENT_ERROR, GET_EVENTS, GET_EVENT } from './types';
 
 export const addevent = ({
   code,
@@ -113,7 +113,7 @@ export const getevent = () => {
   return async dispatch => {
     try {
       const response = await api.get({ url: 'updateevent/' + id });
-      dispatch({ type: GET_EVENTS, payload: response.data[0] });
+      dispatch({ type: GET_EVENT, payload: response.data[0] });
     } catch (err) {
       return err;
     }

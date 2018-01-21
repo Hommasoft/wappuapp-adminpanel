@@ -17,6 +17,7 @@ class Events extends Component {
     if (!this.props.event) {
       return <div>No events in selected city</div>;
     }
+    console.log(this.props.event);
     return (
       <Table striped hover>
         <thead>
@@ -84,7 +85,7 @@ class Events extends Component {
 }
 
 const mapStateToProps = state => {
-  return { event: state.event.eventData };
+  return { event: state.event.eventsData };
 };
 
 export default connect(mapStateToProps, Event)(Events);
