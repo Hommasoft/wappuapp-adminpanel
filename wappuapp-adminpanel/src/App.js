@@ -30,6 +30,9 @@ class App extends Component {
                   <NavItem eventKey="/feed" href="/feed">
                     Feed
                   </NavItem>
+                  <NavItem eventKey="/event" href="/event">
+                    Event
+                  </NavItem>
                   <NavItem eventKey="/moderatorlist" href="/moderatorlist">
                     ModList
                   </NavItem>
@@ -62,6 +65,9 @@ class App extends Component {
                   </NavItem>
                   <NavItem eventKey="/feed" href="/feed">
                     Feed
+                  </NavItem>
+                  <NavItem eventKey="/event" href="/event">
+                    Event
                   </NavItem>
                   <NavDropdown title="Account" id="nav-dropdown">
                     <MenuItem href="/account">Account Page</MenuItem>

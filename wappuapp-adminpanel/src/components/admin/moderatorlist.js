@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table, Glyphicon } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { confirmAlert } from 'react-confirm-alert';
 import '../../assets/css/confirm-alert.css';
 

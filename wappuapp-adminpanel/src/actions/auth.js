@@ -20,7 +20,7 @@ export const login = ({ email, password }) => {
 export const addmoderator = ({ email }) => {
   return async dispatch => {
     try {
-      const response = await api.post({ url: 'addmoderator', data: { email } });
+      await api.post({ url: 'addmoderator', data: { email } });
       History.push('/moderatorlist');
     } catch (err) {
       dispatch(authError(err));
