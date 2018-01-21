@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import '../../assets/css/login.css';
 
@@ -12,6 +11,7 @@ class UpdateEvent extends Component {
   }
 
   handleFormSubmit({
+    code,
     name,
     location_name,
     start_time,
@@ -34,14 +34,14 @@ class UpdateEvent extends Component {
   }
 
   render() {
-    if (!this.props.event) {
-      return <div>Data not yet received</div>;
-    }
     const { handleSubmit } = this.props;
-    console.log(this.props.event[0].name);
+    console.log(this.props.initialValues);
+    if (!this.props.initialValues) {
+      return <div>Not ready yet</div>;
+    }
     return (
       <div>
-        <form key={this.props.event.id} onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <fieldset className="form-group">
             <Field className="form-control" name="code" component="input" type="text" />
           </fieldset>
@@ -57,14 +57,11 @@ class UpdateEvent extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { event: state.event.eventData };
-};
+const mapStateToProps = ({ state }) => ({
+  initialValues: { name: 'asd', code: 'asd' }
+});
 
 export default reduxForm({
-  enableReninitialize: true,
-  form: 'event',
-  initialValues: {
-    name: 'asd'
-  }
+  enableReinitialize: true,
+  form: 'form'
 })(connect(mapStateToProps, Event)(UpdateEvent));
