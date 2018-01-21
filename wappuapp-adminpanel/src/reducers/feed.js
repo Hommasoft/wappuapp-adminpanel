@@ -3,7 +3,9 @@ import {
   GET_FEED_REQUEST,
   GET_FEED_SUCCESS,
   GET_FEED_FAILURE,
-  REMOVE_FEED_ITEM
+  REMOVE_FEED_ITEM,
+  BAN_USER,
+  UNBAN_USER
 } from '../actions/types';
 import loadingStates from '../constants/loadingstates';
 
@@ -34,6 +36,12 @@ export const feed = (state = initialState, action) => {
       return {
         feed: state.feed.filter(item => action.item !== item.id)
       };
+    case BAN_USER:
+      return {
+        feed: state.feed.filter(item => action.uuid !== item.author.id)
+      };
+    case UNBAN_USER:
+      return state;
     default:
       return state;
   }
