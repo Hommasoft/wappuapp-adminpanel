@@ -7,6 +7,7 @@ import * as Event from '../../actions/event';
 
 class Addevent extends Component {
   handleFormSubmit({
+    code,
     name,
     location_name,
     start_time,
@@ -14,9 +15,13 @@ class Addevent extends Component {
     organizer,
     contact_details,
     fb_event_id,
-    description
+    description,
+    show,
+    teemu,
+    city_id
   }) {
     this.props.addevent({
+      code,
       name,
       location_name,
       start_time,
@@ -24,7 +29,10 @@ class Addevent extends Component {
       organizer,
       contact_details,
       fb_event_id,
-      description
+      description,
+      show,
+      teemu,
+      city_id
     });
   }
 
@@ -43,6 +51,15 @@ class Addevent extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+          <fieldset className="form-group">
+            <Field
+              className="form-control"
+              name="code"
+              component="input"
+              type="text"
+              placeholder="Code"
+            />
+          </fieldset>
           <fieldset className="form-group">
             <Field
               className="form-control"
@@ -114,6 +131,22 @@ class Addevent extends Component {
               type="textarea"
               placeholder="Description"
             />
+            <fieldset className="form-group">
+              <label>Show</label>
+              <Field className="form-control" name="show" component="input" type="checkbox" />
+            </fieldset>
+            <fieldset className="form-group">
+              <label>Teemu</label>
+              <Field className="form-control" name="teemu" component="input" type="checkbox" />
+            </fieldset>
+            <fieldset className="form-group">
+              <label>City</label>
+              <Field className="form-control" name="city_id" component="select">
+                <option value="0">Choose</option>
+                <option value="2">Tampere</option>
+                <option value="3">Otaniemi</option>
+              </Field>
+            </fieldset>
           </fieldset>
           {this.renderError()}
           <button action="submit" className="btn btn-primary">
