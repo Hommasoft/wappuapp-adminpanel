@@ -2,7 +2,8 @@ import {
   GET_COMMENTS_REQUEST,
   GET_COMMENTS_SUCCESS,
   GET_COMMENTS_FAILURE,
-  SET_COMMENTS
+  SET_COMMENTS,
+  REMOVE_COMMENT
 } from '../actions/types';
 import loadingStates from '../constants/loadingstates';
 
@@ -31,6 +32,10 @@ export const comments = (state = initialState, action) => {
       return Object.assign({}, state, {
         listState: loadingStates.FAILED
       });
+    case REMOVE_COMMENT:
+      return {
+        comments: state.comments.filter(item => action.item !== item.id)
+      };
     default:
       return state;
   }

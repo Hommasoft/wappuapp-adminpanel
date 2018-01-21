@@ -4,7 +4,8 @@ import {
   GET_COMMENTS_REQUEST,
   GET_COMMENTS_SUCCESS,
   GET_COMMENTS_FAILURE,
-  SET_COMMENTS
+  SET_COMMENTS,
+  REMOVE_COMMENT
 } from './types';
 
 const fetchComments = id => {
@@ -20,4 +21,15 @@ const fetchComments = id => {
   };
 };
 
-export { fetchComments };
+const removeComment = id => {
+  return async dispatch => {
+    try {
+      await api.put({ url: 'admin/feed/' + id });
+      dispatch({ type: REMOVE_COMMENT, item: id });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export { fetchComments, removeComment };
