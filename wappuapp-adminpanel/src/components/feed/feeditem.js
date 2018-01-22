@@ -61,7 +61,13 @@ class FeedItem extends Component {
         return <p>ERROR</p>;
       default:
         console.log(this.props.comments);
-        return <CommentList comments={this.props.comments} banUser={this.props.banUser} />;
+        return (
+          <CommentList
+            comments={this.props.comments}
+            banUser={this.props.banUser}
+            removeComment={this.props.removeComment}
+          />
+        );
     }
   }
 

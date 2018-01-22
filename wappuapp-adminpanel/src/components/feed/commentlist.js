@@ -10,10 +10,15 @@ class CommentList extends Component {
   constructor(props) {
     super(props);
     this.onClickBan = this.onClickBan.bind(this);
+    this.onClickRemove = this.onClickRemove.bind(this);
   }
 
   onClickBan(id) {
     this.props.banUser(id);
+  }
+
+  onClickRemove(id) {
+    this.props.removeComment(id);
   }
 
   render() {
@@ -37,7 +42,13 @@ class CommentList extends Component {
                   bsStyle="link"
                   bsSize="xsmall"
                 >
-                  <MenuItem onSelect={this.onClickRemove}>Delete</MenuItem>
+                  <MenuItem
+                    onSelect={() => {
+                      this.onClickRemove(item.id);
+                    }}
+                  >
+                    Delete
+                  </MenuItem>
                   <MenuItem
                     onSelect={() => {
                       this.onClickBan(item.author.id);
