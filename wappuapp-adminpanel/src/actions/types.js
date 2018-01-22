@@ -16,3 +16,4 @@ export const SET_COMMENTS = 'set_comments';
 export const EVENT_ERROR = 'event_error';
 export const GET_EVENTS = 'get_events';
 export const GET_EVENT = 'get_event';
+export const REMOVE_COMMENT = 'remove_comment';
