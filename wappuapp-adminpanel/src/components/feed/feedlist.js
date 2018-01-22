@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, DropdownButton, MenuItem, Row } from 'react-bootstrap';
 
 import * as Feed from '../../actions/feed';
 import loadingStates from '../../constants/loadingstates';
@@ -51,7 +51,27 @@ class FeedList extends Component {
   }
 
   render() {
-    return <div>{this.renderFeed(this.props.feedListState)}</div>;
+    const city = 'City';
+    return (
+      <div>
+        <Row className="filters">
+          <DropdownButton title={city}>
+            <MenuItem>Otaniemi</MenuItem>
+            <MenuItem>Tampere</MenuItem>
+          </DropdownButton>
+          <DropdownButton title="Sort">
+            <MenuItem>New</MenuItem>
+            <MenuItem>Hot</MenuItem>
+          </DropdownButton>
+          <DropdownButton title="Type">
+            <MenuItem>All</MenuItem>
+            <MenuItem>Text</MenuItem>
+            <MenuItem>Image</MenuItem>
+          </DropdownButton>
+        </Row>
+        <Row>{this.renderFeed(this.props.feedListState)}</Row>
+      </div>
+    );
   }
 }
 const mapStateToProps = state => {
