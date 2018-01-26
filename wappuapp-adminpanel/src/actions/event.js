@@ -43,13 +43,14 @@ export const addevent = ({
   };
 };
 
-export const getevents = ({ city_id }) => {
+export const getevents = () => {
+  const id = History.location.pathname.split('/')[2];
   return async dispatch => {
     try {
-      const response = await api.get({ url: 'allevents/0' });
+      const response = await api.get({ url: 'allevents/' + id });
       dispatch({ type: GET_EVENTS, payload: response.data });
     } catch (err) {
-      return err;
+      dispatch(eventError(err));
     }
   };
 };
@@ -60,8 +61,7 @@ export function deleteevent(id) {
       await api.del({ url: 'deleteevent/' + id });
       History.push('/event');
     } catch (err) {
-      console.log(err);
-      return err;
+      dispatch(eventError(err));
     }
   };
 }
@@ -100,10 +100,9 @@ export const updateevent = ({
           city_id
         }
       });
-      History.push('/event');
+      History.push('/event/0');
     } catch (err) {
-      console.log(err);
-      return err;
+      dispatch(eventError(err));
     }
   };
 };
@@ -115,7 +114,7 @@ export const getevent = () => {
       const response = await api.get({ url: 'updateevent/' + id });
       dispatch({ type: GET_EVENT, payload: response.data[0] });
     } catch (err) {
-      return err;
+      dispatch(eventError(err));
     }
   };
 };

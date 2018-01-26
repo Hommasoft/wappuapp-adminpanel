@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { isISO8601 } from 'validator';
 import '../../assets/css/login.css';
 
 import * as Event from '../../actions/event';
@@ -42,67 +43,109 @@ class UpdateEvent extends Component {
     });
   }
 
-  render() {
-    const { handleSubmit } = this.props;
-    console.log(this.props.initialValues);
+  renderError() {
+    if (this.props.errorMessage) {
+      if (this.props.errorMessage.error) {
+        return <div className="alert alert-danger">{this.props.errorMessage.error}</div>;
+      } else {
+        return <div className="alert alert-danger">Error: {this.props.errorMessage}</div>;
+      }
+    }
+  }
+
+  renderField({ input, label, type, meta: { error } }) {
     return (
       <div>
+        <label>{label}</label>
+        <div>
+          <input className="form-control" {...input} placeholder={label} type={type} />
+          {error && <span className="text-danger">{error}</span>}
+        </div>
+      </div>
+    );
+  }
+
+  render() {
+    const { handleSubmit } = this.props;
+    return (
+      <div>
+        {this.renderError()}
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <fieldset className="form-group">
-            <label>Code</label>
-            <Field className="form-control" name="id" component="input" type="text" disabled />
+            <Field name="code" component={this.renderField} label="Code" type="text" />
           </fieldset>
           <fieldset className="form-group">
-            <label>Code</label>
-            <Field className="form-control" name="code" component="input" type="text" />
+            <Field name="name" component={this.renderField} type="text" label="Event Name" />
           </fieldset>
           <fieldset className="form-group">
-            <label>Name</label>
-            <Field className="form-control" name="name" component="input" type="text" />
+            <Field
+              name="location_name"
+              component={this.renderField}
+              type="text"
+              label="Event location"
+            />
           </fieldset>
           <fieldset className="form-group">
-            <label>Location name</label>
-            <Field className="form-control" name="location_name" component="input" type="text" />
+            <Field
+              name="start_time"
+              component={this.renderField}
+              type="text"
+              label="Starting time (1999-01-08 04:05:06)"
+            />
           </fieldset>
           <fieldset className="form-group">
-            <label>Start Time</label>
-            <Field className="form-control" name="start_time" component="input" type="text" />
+            <Field
+              name="end_time"
+              component={this.renderField}
+              type="text"
+              label="Ending time (1999-01-08 04:05:06)"
+            />
           </fieldset>
           <fieldset className="form-group">
-            <label>End Time</label>
-            <Field className="form-control" name="end_time" component="input" type="text" />
+            <Field name="organizer" component={this.renderField} type="text" label="Organizer" />
+          </fieldset>
+          <fieldset className="form-group">
+            <Field
+              name="contact_details"
+              component={this.renderField}
+              type="text"
+              label="Contact details"
+            />
+          </fieldset>
+          <fieldset className="form-group">
+            <Field
+              name="fb_event_id"
+              component={this.renderField}
+              type="text"
+              label="Facebook event ID"
+            />
           </fieldset>
           <fieldset className="form-group">
             <label>Description</label>
-            <Field className="form-control" name="description" component="input" type="text" />
-          </fieldset>
-          <fieldset className="form-group">
-            <label>Organizer</label>
-            <Field className="form-control" name="organizer" component="input" type="text" />
-          </fieldset>
-          <fieldset className="form-group">
-            <label>Contact Details</label>
-            <Field className="form-control" name="contact_details" component="input" type="text" />
-          </fieldset>
-          <fieldset className="form-group">
-            <label>FB event ID</label>
-            <Field className="form-control" name="fb_event_id" component="input" type="text" />
-          </fieldset>
-          <fieldset className="form-group">
-            <label>Show</label>
-            <Field className="form-control" name="show" component="input" type="checkbox" />
-          </fieldset>
-          <fieldset className="form-group">
-            <label>Teemu</label>
-            <Field className="form-control" name="teemu" component="input" type="checkbox" />
-          </fieldset>
-          <fieldset className="form-group">
-            <label>City</label>
-            <Field className="form-control" name="city_id" component="select">
-              <option value="0">Choose</option>
-              <option value="2">Tampere</option>
-              <option value="3">Otaniemi</option>
-            </Field>
+            <Field
+              name="description"
+              component="textarea"
+              rows="8"
+              cols="50"
+              placeholder="description"
+              type="text"
+            />
+            <fieldset className="form-group">
+              <label>Show</label>
+              <Field className="form-control" name="show" component="input" type="checkbox" />
+            </fieldset>
+            <fieldset className="form-group">
+              <label>Teemu</label>
+              <Field className="form-control" name="teemu" component="input" type="checkbox" />
+            </fieldset>
+            <fieldset className="form-group">
+              <label>City</label>
+              <Field className="form-control" name="city_id" component="select">
+                <option value="0">Choose</option>
+                <option value="3">Tampere</option>
+                <option value="2">Otaniemi</option>
+              </Field>
+            </fieldset>
           </fieldset>
           <button action="submit" className="btn btn-primary">
             Update event
@@ -113,13 +156,37 @@ class UpdateEvent extends Component {
   }
 }
 
+const validate = values => {
+  const errors = {};
+  if (!values.code) {
+    errors.code = 'Code is required';
+  }
+  if (values.name && values.name.length > 99) {
+    errors.name = 'Too long name';
+  }
+  if (values.location_name && values.location_name.length > 99) {
+    errors.location_name = 'Too long location name';
+  }
+  if (values.description && values.description.length > 4999) {
+    errors.description = 'Too long Description';
+  }
+  if (values.start_time && !isISO8601(values.start_time)) {
+    errors.start_time = 'Wrong format';
+  }
+  if (values.end_time && !isISO8601(values.end_time)) {
+    errors.start_time = 'Wrong format';
+  }
+  return errors;
+};
+
 const mapStateToProps = state => {
-  return { initialValues: state.event.eventData };
+  return { initialValues: state.event.eventData, errorMessage: state.event.error };
 };
 
 export default connect(mapStateToProps, Event)(
   reduxForm({
     form: 'event',
+    validate,
     enableReinitialize: true
   })(UpdateEvent)
 );
