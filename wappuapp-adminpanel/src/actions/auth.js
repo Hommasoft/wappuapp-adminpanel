@@ -9,6 +9,8 @@ export const login = ({ email, password }) => {
       const response = await api.post({ url: 'login', data: { email, password } });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('admin', response.data.admin);
+      localStorage.setItem('activated', response.data.activated);
+      localStorage.setItem('email', response.data.email);
       dispatch({ type: AUTH_USER });
       History.push('/feed');
     } catch (err) {
@@ -57,6 +59,8 @@ export const activateaccount = ({ password }) => {
 export const logout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('admin');
+  localStorage.removeItem('email');
+  localStorage.removeItem('activated');
   History.push('/');
   return { type: UNAUTH_USER };
 };
