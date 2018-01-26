@@ -34,9 +34,20 @@ class AccountPage extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    var accountType = localStorage.getItem('admin');
+    if (accountType === 'true') {
+      accountType = 'admin';
+    } else {
+      accountType = 'moderator';
+    }
     return (
       <div>
-        <div>Here will be accounts details</div>
+        <div>
+          <h3>User details</h3>
+          Email: {localStorage.getItem('email')} <br />
+          Account type: {accountType} <br />
+          Activated: {localStorage.getItem('activated')} <br />
+        </div>
         <br />
         <div align="center">
           Change password
