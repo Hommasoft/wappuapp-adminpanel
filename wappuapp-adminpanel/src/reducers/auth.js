@@ -1,4 +1,4 @@
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from '../actions/types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CHANGEPW_ERROR, ADDMOD_ERROR } from '../actions/types';
 
 export const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -8,6 +8,10 @@ export const reducer = (state = {}, action) => {
       return { state, authenticated: false };
     case AUTH_ERROR:
       return { state, error: action.payload };
+    case CHANGEPW_ERROR:
+      return { state, error: action.payload, authenticated: true };
+    case ADDMOD_ERROR:
+      return { state, error: action.payload, authenticated: true };
     default:
       return state;
   }

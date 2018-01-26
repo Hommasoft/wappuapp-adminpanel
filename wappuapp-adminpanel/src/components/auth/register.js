@@ -11,11 +11,11 @@ class Register extends Component {
 
   renderError() {
     if (this.props.errorMessage) {
-      return (
-        <div className="alert alert-danger">
-          <string>Error: {this.props.errorMessage}</string>
-        </div>
-      );
+      if (this.props.errorMessage.error) {
+        return <div className="alert alert-danger">{this.props.errorMessage.error}</div>;
+      } else {
+        return <div className="alert alert-danger">Error: {this.props.errorMessage}</div>;
+      }
     }
   }
 
@@ -52,9 +52,7 @@ class Register extends Component {
 
 const validate = values => {
   const errors = {};
-  if (!values.email) {
-    errors.email = 'Please enter a valid email';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email';
   }
   return errors;

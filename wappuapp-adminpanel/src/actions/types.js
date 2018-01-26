@@ -1,6 +1,8 @@
 export const AUTH_USER = 'auth_user';
 export const UNAUTH_USER = 'unauth_user';
 export const AUTH_ERROR = 'auth_error';
+export const CHANGEPW_ERROR = 'changepw_error';
+export const ADDMOD_ERROR = 'addmod_error';
 export const GET_PROTECTED_DATA = 'get_protected_data';
 export const GET_FEED_REQUEST = 'get_feed_request';
 export const GET_FEED_SUCCESS = 'get_feed_success';
@@ -17,3 +19,4 @@ export const EVENT_ERROR = 'event_error';
 export const GET_EVENTS = 'get_events';
 export const GET_EVENT = 'get_event';
 export const REMOVE_COMMENT = 'remove_comment';
+export const MODLIST_ERROR = 'modlist_error';
