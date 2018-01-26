@@ -24,7 +24,8 @@ class UpdateEvent extends Component {
     description,
     show,
     teemu,
-    city_id
+    city_id,
+    location
   }) {
     this.props.updateevent({
       id,
@@ -39,7 +40,8 @@ class UpdateEvent extends Component {
       description,
       show,
       teemu,
-      city_id
+      city_id,
+      location
     });
   }
 
@@ -67,6 +69,9 @@ class UpdateEvent extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    if (!this.props.initialValues) {
+      return <div>No data</div>;
+    }
     return (
       <div>
         {this.renderError()}
@@ -110,6 +115,19 @@ class UpdateEvent extends Component {
               component={this.renderField}
               type="text"
               label="Contact details"
+            />
+          </fieldset>
+          <label>Location coordinates</label>
+          <fieldset className="form-group">
+            <Field name="location.x" component="input" type="text" placeholder="Latitude" />
+            <Field name="location.y" component="input" type="text" placeholder="Longitude" />
+          </fieldset>
+          <fieldset className="form-group">
+            <Field
+              name="cover_image"
+              component={this.renderField}
+              type="text"
+              label="Cover image (URL location)"
             />
           </fieldset>
           <fieldset className="form-group">

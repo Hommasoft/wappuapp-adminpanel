@@ -19,7 +19,8 @@ class Addevent extends Component {
     description,
     show,
     teemu,
-    city_id
+    city_id,
+    location
   }) {
     this.props.addevent({
       code,
@@ -33,7 +34,8 @@ class Addevent extends Component {
       description,
       show,
       teemu,
-      city_id
+      city_id,
+      location
     });
   }
 
@@ -103,6 +105,19 @@ class Addevent extends Component {
               component={this.renderField}
               type="text"
               label="Contact details"
+            />
+          </fieldset>
+          <label>Location coordinates</label>
+          <fieldset className="form-group">
+            <Field name="location.x" component="input" type="text" placeholder="Latitude" />
+            <Field name="location.y" component="input" type="text" placeholder="Longitude" />
+          </fieldset>
+          <fieldset className="form-group">
+            <Field
+              name="cover_image"
+              component={this.renderField}
+              type="text"
+              label="Cover Image (URL)"
             />
           </fieldset>
           <fieldset className="form-group">

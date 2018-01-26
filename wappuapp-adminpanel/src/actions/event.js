@@ -15,7 +15,8 @@ export const addevent = ({
   description,
   show,
   teemu,
-  city_id
+  city_id,
+  location
 }) => {
   return async dispatch => {
     try {
@@ -33,7 +34,8 @@ export const addevent = ({
           description,
           show,
           teemu,
-          city_id
+          city_id,
+          location
         }
       });
       History.push('/event');
@@ -79,8 +81,10 @@ export const updateevent = ({
   description,
   show,
   teemu,
-  city_id
+  city_id,
+  location
 }) => {
+  console.log(location);
   return async dispatch => {
     try {
       await api.post({
@@ -97,7 +101,8 @@ export const updateevent = ({
           description,
           show,
           teemu,
-          city_id
+          city_id,
+          location
         }
       });
       History.push('/event/0');
