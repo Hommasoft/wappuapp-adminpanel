@@ -129,15 +129,15 @@ class Moderatorlist extends Component {
         </a>
         <br />
         <br />
-        {this.renderError()}
         {this.renderData()}
+        {this.renderError()}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { protected: state.protected.protectedData };
+  return { protected: state.protected.protectedData, errorMessage: state.protected.error };
 };
 
 export default connect(mapStateToProps, Admin)(Moderatorlist);

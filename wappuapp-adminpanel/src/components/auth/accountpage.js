@@ -10,13 +10,9 @@ class AccountPage extends Component {
   }
 
   renderError() {
-    console.log(this.props.errorMessage);
     if (this.props.errorMessage) {
-      return (
-        <div className="alert alert-danger">
-          <string>Error: {this.props.errorMessage}</string>
-        </div>
-      );
+      console.log(this.props.errorMessage);
+      return <div className="alert alert-danger">{this.props.errorMessage}</div>;
     }
   }
 
@@ -90,14 +86,20 @@ class AccountPage extends Component {
 
 const validate = values => {
   const errors = {};
-  if (values.newpassword !== values.newpasswordagain) {
+  //if (values.newpassword && values.newpassword.length < 8) {
+  //  errors.newpassword = 'Password has to be atleast 8 characters long'
+  //}
+  if (values.newpassword && values.oldpassword === values.newpassword) {
+    errors.newpassword = 'New password can not be the same as old one';
+  }
+  if (values.newpasswordagain && values.newpassword !== values.newpasswordagain) {
     errors.newpasswordagain = 'New passwords need to match';
   }
   return errors;
 };
 
 const mapStateToProps = state => {
-  return { errorMessage: state.auth.error.error };
+  return { errorMessage: state.auth.error };
 };
 
 export default reduxForm({

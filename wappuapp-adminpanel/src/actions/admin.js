@@ -1,7 +1,7 @@
 import * as api from '../services/api';
 import History from '../history';
 
-import { GET_PROTECTED_DATA } from './types';
+import { GET_PROTECTED_DATA, MODLIST_ERROR } from './types';
 
 export const getModlist = () => {
   return async dispatch => {
@@ -9,7 +9,8 @@ export const getModlist = () => {
       const response = await api.get({ url: 'moderatorlist' });
       dispatch({ type: GET_PROTECTED_DATA, payload: response.data });
     } catch (err) {
-      return err;
+      dispatch({ type: MODLIST_ERROR, payload: err });
+      History.push('/moderatorlist');
     }
   };
 };
@@ -20,7 +21,8 @@ export function demoteMod(id) {
       await api.put({ url: 'demote/' + id });
       History.push('/moderatorlist');
     } catch (err) {
-      return err;
+      dispatch({ type: MODLIST_ERROR, payload: err });
+      History.push('/moderatorlist');
     }
   };
 }
@@ -31,7 +33,8 @@ export function promoteMod(id) {
       await api.put({ url: 'promote/' + id });
       History.push('/moderatorlist');
     } catch (err) {
-      return err;
+      dispatch({ type: MODLIST_ERROR, payload: err });
+      History.push('/moderatorlist');
     }
   };
 }
@@ -42,7 +45,8 @@ export function deleteMod(id) {
       await api.del({ url: 'deletemoderator/' + id });
       History.push('/moderatorlist');
     } catch (err) {
-      return err;
+      dispatch({ type: MODLIST_ERROR, payload: err });
+      History.push('/moderatorlist');
     }
   };
 }
