@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:9000/api' : '/api';
+const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:9000/api'
+    : process.env.BACKEND_URI + '/api';
+
+console.log(baseUrl);
 
 const api = axios.create({
   baseURL: baseUrl
