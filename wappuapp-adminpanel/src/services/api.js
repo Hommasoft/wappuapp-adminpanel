@@ -3,9 +3,7 @@ import axios from 'axios';
 const baseUrl =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:9000/api'
-    : process.env.BACKEND_URI + '/api';
-
-console.log(baseUrl);
+    : 'https://wappuapp-backend-dev.herokuapp.com/api';
 
 const api = axios.create({
   baseURL: baseUrl
