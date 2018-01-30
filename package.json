@@ -14,7 +14,7 @@
     "husky": "0.14.3"
   },
   "scripts": {
-    "postinstall": "cd wappuapp-adminpanel && npm install && cd ../wappuapp-backend && npm install",
+    "postinstall": "cd wappuapp-adminpanel && npm install",
     "precommit": "cd wappuapp-adminpanel && npm run precommit",
     "lint": "cd wappuapp-adminpanel && npm run eslint"
   }
