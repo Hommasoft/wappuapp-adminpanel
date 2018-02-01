@@ -15,7 +15,8 @@
   },
   "scripts": {
     "start": "cd wappuapp-adminpanel && npm run start",
-    "build": "cd wappuapp-adminpanel && npm run build && cp -r ./build ../build",
+    "build":
+      "cd wappuapp-adminpanel && npm run build && cp -r ./build ../build",
     "postinstall": "cd wappuapp-adminpanel && npm install",
     "precommit": "cd wappuapp-adminpanel && npm run precommit",
     "lint": "cd wappuapp-adminpanel && npm run eslint"

@@ -39,15 +39,16 @@
   "lint-staged": {
     "gitDir": "../",
     "linters": {
-      "wappuapp-adminpanel/src/**/*.json": [
-        "prettier --write",
-        "git add"
-      ],
-      "wappuapp-adminpanel/src/**/*.js": [
-        "prettier --write",
-        "eslint",
-        "git add"
-      ]
+      "wappuapp-adminpanel/src/**/*.json": ["prettier --write", "git add"],
+      "wappuapp-adminpanel/src/**/*.js": ["prettier --write", "eslint", "git add"]
+    }
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:9000",
+      "pathRewrite": {
+        "^/api": "/api"
+      }
     }
   }
 }
