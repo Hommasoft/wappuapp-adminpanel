@@ -11,7 +11,7 @@ class Header extends Component {
     currentPage = '/' + currentPage;
     if (admin === 'true') {
       return (
-        <div>
+        <div className="headerBar">
           <Nav justified bsStyle="tabs" activeKey={currentPage}>
             <NavItem eventKey="/" href="/">
               Front
