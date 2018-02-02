@@ -69,7 +69,7 @@ class Moderatorlist extends Component {
       return <div>Table empty</div>;
     }
     return (
-      <Table striped hover>
+      <Table striped hover bordered>
         <thead>
           <tr>
             <th>ID</th>

@@ -28,7 +28,7 @@ class Events extends Component {
       return <div>No events in selected city</div>;
     }
     return (
-      <Table striped hover>
+      <Table striped hover bordered>
         <thead>
           <tr>
             <th>Code</th>
@@ -51,12 +51,12 @@ class Events extends Component {
                 <td>{data.organizer}</td>
                 <td>{data.city_id}</td>
                 <td>{data.show ? 'X' : 'O'}</td>
-                <td>
+                <td align="center">
                   <a href={'/updateevent/' + data.id}>
                     <button className="btn btn-primary">Edit</button>
                   </a>
                 </td>
-                <td>
+                <td align="center">
                   <button
                     className="btn btn-primary"
                     type="submit"
