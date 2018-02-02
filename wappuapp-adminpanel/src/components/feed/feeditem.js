@@ -98,7 +98,7 @@ class FeedItem extends Component {
                 <h3 className="itemUser">{item.author.name}</h3>
                 <h5 className="itemTeam">{item.author.team}</h5>
               </Col>
-              <Col xs={6} sm={6} md={6}>
+              <Col xs={6} sm={6} md={6} className="kebabMenu">
                 <DropdownButton
                   key={item.id}
                   id={'dropdownmenu' + item.id}
@@ -129,7 +129,7 @@ class FeedItem extends Component {
               <Col xs={6} sm={6} md={6} className="timeInfo">
                 <Button onClick={this.onClickOpenComments} bsSize="small" className="commentButton">
                   {' '}
-                  Comments: 0 {commentArrow}
+                  Comments: {item.numberOfComments} {commentArrow}
                 </Button>
               </Col>
             </Row>

@@ -5,7 +5,8 @@ import { reducer as authReducer } from './auth';
 import { reducer as eventReducer } from './event';
 import { reducer as protectedReducer } from './protected';
 import { feed as feedReducer } from './feed';
-import { comments as commentsReducer } from './comments.js';
+import { comments as commentsReducer } from './comments';
+import { filters as filtersReducer } from './filters';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   protected: protectedReducer,
   feed: feedReducer,
   comments: commentsReducer,
-  event: eventReducer
+  event: eventReducer,
+  filters: filtersReducer
 });
 
 export default rootReducer;
