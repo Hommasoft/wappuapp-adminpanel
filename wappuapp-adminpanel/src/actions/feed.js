@@ -7,18 +7,33 @@ import {
   SET_FEED,
   REMOVE_FEED_ITEM,
   BAN_USER,
-  UNBAN_USER
+  UNBAN_USER,
+  SET_CITIES
 } from './types';
 
 const fetchFeed = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     try {
       dispatch({ type: GET_FEED_REQUEST });
-      const response = await api.get({ url: 'feed' });
+      let cityId = '?cityId=' + getState().filters.city;
+      let sort = '&sort=' + getState().filters.sort;
+      let type = getState().filters.type;
+      const response = await api.get({ url: 'feed' + cityId + sort + type });
       dispatch({ type: SET_FEED, feed: response.data });
       dispatch({ type: GET_FEED_SUCCESS });
     } catch (error) {
       dispatch({ type: GET_FEED_FAILURE, error: true, payload: error });
+    }
+  };
+};
+
+const fetchCities = () => {
+  return async dispatch => {
+    try {
+      const response = await api.get({ url: 'cities/' });
+      dispatch({ type: SET_CITIES, cities: response.data });
+    } catch (error) {
+      console.log(error);
     }
   };
 };
@@ -56,4 +71,4 @@ const unbanUser = uuid => {
   };
 };
 
-export { fetchFeed, removeFeedItem, banUser, unbanUser };
+export { fetchFeed, removeFeedItem, banUser, unbanUser, fetchCities };

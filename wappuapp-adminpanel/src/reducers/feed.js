@@ -5,13 +5,15 @@ import {
   GET_FEED_FAILURE,
   REMOVE_FEED_ITEM,
   BAN_USER,
-  UNBAN_USER
+  UNBAN_USER,
+  SET_CITIES
 } from '../actions/types';
 import loadingStates from '../constants/loadingstates';
 
 const initialState = {
   feed: [],
-  listState: loadingStates.NONE
+  listState: loadingStates.NONE,
+  cities: []
 };
 
 export const feed = (state = initialState, action) => {
@@ -42,6 +44,10 @@ export const feed = (state = initialState, action) => {
       };
     case UNBAN_USER:
       return state;
+    case SET_CITIES:
+      return Object.assign({}, state, {
+        cities: action.cities
+      });
     default:
       return state;
   }
