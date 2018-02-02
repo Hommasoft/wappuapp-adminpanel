@@ -17,7 +17,7 @@ class Header extends Component {
             <img src={logo} alt="logo" />
           </div>
           <div className="headerContent">
-            <Nav justified bsStyle="tabs" activeKey={currentPage}>
+            <Nav justified bsStyle="pills" activeKey={currentPage}>
               <NavItem eventKey="/" href="/">
                 Front
               </NavItem>
@@ -45,7 +45,7 @@ class Header extends Component {
       return (
         <div className="headerBar">
           <div className="headerContent">
-            <Nav justified bsStyle="tabs" activeKey={currentPage}>
+            <Nav justified bsStyle="pills" activeKey={currentPage}>
               <NavItem eventKey="/" href="/">
                 Front
               </NavItem>
@@ -67,7 +67,7 @@ class Header extends Component {
       return (
         <div className="headerBar">
           <div className="headerContent">
-            <Nav justified bsStyle="tabs" activeKey={currentPage}>
+            <Nav justified bsStyle="pills" activeKey={currentPage}>
               <NavItem eventKey="/" href="/">
                 Front
               </NavItem>
