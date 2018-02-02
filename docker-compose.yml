@@ -2,17 +2,6 @@
 
 version: '2'
 services:
-  adminpanel:
-    build:
-      context: wappuapp-adminpanel
-      dockerfile: Dockerfile.dev
-    environment:
-      BACKEND_URI: backend:80
-    ports:
-      - "3001:80"
-    links:
-      - backend
-
   backend:
     build:
       context: wappuapp-backend

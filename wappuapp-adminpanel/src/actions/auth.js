@@ -1,7 +1,7 @@
 import * as api from '../services/api';
 import History from '../history';
 
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CHANGEPW_ERROR, ADDMOD_ERROR } from './types';
 
 export const login = ({ email, password }) => {
   return async dispatch => {
@@ -9,6 +9,8 @@ export const login = ({ email, password }) => {
       const response = await api.post({ url: 'login', data: { email, password } });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('admin', response.data.admin);
+      localStorage.setItem('activated', response.data.activated);
+      localStorage.setItem('email', response.data.email);
       dispatch({ type: AUTH_USER });
       History.push('/feed');
     } catch (err) {
@@ -23,7 +25,8 @@ export const addmoderator = ({ email }) => {
       await api.post({ url: 'addmoderator', data: { email } });
       History.push('/moderatorlist');
     } catch (err) {
-      dispatch(authError(err));
+      dispatch({ type: ADDMOD_ERROR, payload: err });
+      History.push('/register');
     }
   };
 };
@@ -34,7 +37,8 @@ export const changepassword = ({ newpassword, oldpassword }) => {
       await api.post({ url: 'changepassword', data: { newpassword, oldpassword } });
       History.push('/account');
     } catch (err) {
-      dispatch(authError(err));
+      dispatch({ type: CHANGEPW_ERROR, payload: err.error });
+      History.push('/account');
     }
   };
 };
@@ -57,6 +61,8 @@ export const activateaccount = ({ password }) => {
 export const logout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('admin');
+  localStorage.removeItem('email');
+  localStorage.removeItem('activated');
   History.push('/');
   return { type: UNAUTH_USER };
 };

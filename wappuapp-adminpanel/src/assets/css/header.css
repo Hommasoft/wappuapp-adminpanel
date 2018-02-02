@@ -1,0 +1,42 @@
+.headerBar {
+  position: relative;
+  height: 310px;
+  width: 100%;
+  background-color: #ec449c;
+  border-radius: 20px;
+  border: 3px solid black;
+}
+
+.headerContentLogoLeft {
+  position: absolute;
+  left: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  top: 0px;
+  bottom: 0px;
+}
+
+.headerContentLogoRight {
+  position: absolute;
+  right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  top: 0px;
+  bottom: 0px;
+}
+
+.headerContent {
+  position: absolute;
+  width: 60%;
+  bottom: 0;
+  margin-right: auto;
+  margin-left: auto;
+  left: 0px;
+  right: 0px;
+  background-color: white;
+  border-radius: 20px;
+  border: 3px solid black;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: -3px;
+}

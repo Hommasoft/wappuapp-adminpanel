@@ -11,12 +11,9 @@ class Login extends Component {
   }
 
   renderError() {
+    console.log(this.props.errorMessage);
     if (this.props.errorMessage) {
-      return (
-        <div className="alert alert-danger">
-          <string>Error: {this.props.errorMessage}</string>
-        </div>
-      );
+      return <div className="alert alert-danger">Error: {this.props.errorMessage}</div>;
     }
   }
 

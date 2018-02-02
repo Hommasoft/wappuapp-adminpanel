@@ -1,6 +1,8 @@
 export const AUTH_USER = 'auth_user';
 export const UNAUTH_USER = 'unauth_user';
 export const AUTH_ERROR = 'auth_error';
+export const CHANGEPW_ERROR = 'changepw_error';
+export const ADDMOD_ERROR = 'addmod_error';
 export const GET_PROTECTED_DATA = 'get_protected_data';
 export const GET_FEED_REQUEST = 'get_feed_request';
 export const GET_FEED_SUCCESS = 'get_feed_success';
@@ -21,3 +23,4 @@ export const SET_CITIES = 'set_cities';
 export const CHANGE_CITY = 'change_city';
 export const CHANGE_SORT = 'change_sort';
 export const CHANGE_TYPE = 'change_type';
+export const MODLIST_ERROR = 'modlist_error';

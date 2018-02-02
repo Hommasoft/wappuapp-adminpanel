@@ -16,7 +16,6 @@ port () {
 
 project="wappuapp"
 backend_container="${project}_backend"
-adminpanel_container="${project}_adminpanel"
 database_container="${project}_database"
 
 docker-compose -p ${project} down &&
@@ -24,7 +23,6 @@ docker-compose -p ${project} -f docker-compose.yml up -d --build && (
   echo "Development environment is now running. Good job."
   echo ""
   echo "Backend: \"http://localhost:$(port $backend_container)\" "
-  echo "Adminpanel: \"http://localhost:$(port $adminpanel_container)\""
   echo "Database: \"http://localhost:$(port $database_container)\""
   echo "Database credentials: wappu / wappu / wappuapp"
   echo ""

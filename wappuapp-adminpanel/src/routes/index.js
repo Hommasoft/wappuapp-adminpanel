@@ -26,9 +26,9 @@ const Routes = () => {
       <Route exact path="/feed" component={RequireAuth(FeedList)} />
       <Route exact path="/moderatorlist" component={RequireAuth(ModList)} />
       <Route exact path="/account" component={RequireAuth(AccountPage)} />
-      <Route exact path="/event" component={RequireAuth(Events)} />
+      <Route exact path="/event/:id" component={RequireAuth(Events)} />
       <Route exact path="/addevent" component={RequireAuth(AddEvent)} />
-      <Route exact path="/updateevent/:id" component={RequireAuth(UpdateEvent)} />
+      <Route exact path="/updateevent/:id" component={UpdateEvent} />
     </App>
   );
 };
