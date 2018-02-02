@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Table, Nav, NavItem } from 'react-bootstrap';
+import { Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import '../../assets/css/login.css';
 import { confirmAlert } from 'react-confirm-alert';
+import ReactTable from 'react-table';
 import '../../assets/css/confirm-alert.css';
 
 import History from '../../history';
 import * as Event from '../../actions/event';
+import 'react-table/react-table.css';
 
 class Events extends Component {
   componentWillMount() {
@@ -23,62 +25,83 @@ class Events extends Component {
     }
   }
 
+  renderUpdateEventButton(id) {
+    return (
+      <center>
+        <a href={'/updateevent/' + id.id}>
+          <button className="btn btn-primary">Edit</button>
+        </a>
+      </center>
+    );
+  }
+
+  renderDeleteEventButton(id) {
+    return (
+      <center>
+        <button
+          className="btn btn-primary"
+          type="submit"
+          onClick={() => {
+            confirmAlert({
+              title: 'Delete',
+              message: 'Are you sure you want to delete event "' + id.name + '"?',
+              confirmLabel: 'Confirm',
+              cancelLabel: 'Cancel',
+              onConfirm: () => this.props.deleteevent(id.id),
+              onCancel: () => History.push('/event')
+            });
+          }}
+        >
+          Delete
+        </button>
+      </center>
+    );
+  }
+
   renderData() {
     if (!this.props.event) {
       return <div>No events in selected city</div>;
     }
+    const columns = [
+      {
+        Header: 'Code',
+        accessor: 'code'
+      },
+      {
+        Header: 'Name',
+        accessor: 'name'
+      },
+      {
+        Header: 'Location',
+        accessor: 'location_name'
+      },
+      {
+        Header: 'Ogranizer',
+        accessor: 'organizer'
+      },
+      {
+        Header: 'City ID',
+        accessor: 'city_id'
+      },
+      {
+        Header: 'Show',
+        accessor: 'show'
+      },
+      {
+        Header: ' ',
+        accessor: 'id',
+        Cell: props => this.renderUpdateEventButton(props.row)
+      },
+      {
+        Header: ' ',
+        accessor: 'id',
+        Cell: props => this.renderDeleteEventButton(props.row)
+      }
+    ];
     return (
-      <Table striped hover bordered>
-        <thead>
-          <tr>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Organizer</th>
-            <th>City ID</th>
-            <th>Show?</th>
-            <th> </th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.event.map(data => {
-            return (
-              <tr key={data.id}>
-                <td>{data.code}</td>
-                <td>{data.name}</td>
-                <td>{data.location_name}</td>
-                <td>{data.organizer}</td>
-                <td>{data.city_id}</td>
-                <td>{data.show ? 'X' : 'O'}</td>
-                <td align="center">
-                  <a href={'/updateevent/' + data.id}>
-                    <button className="btn btn-primary">Edit</button>
-                  </a>
-                </td>
-                <td align="center">
-                  <button
-                    className="btn btn-primary"
-                    type="submit"
-                    onClick={() => {
-                      confirmAlert({
-                        title: 'Confirm',
-                        message: 'Are you sure you want to delete event ' + data.name + '?',
-                        confirmLabel: 'Confirm',
-                        cancelLabel: 'Cancel',
-                        onConfirm: () => this.props.deleteevent(data.id),
-                        onCancel: () => History.push('/event')
-                      });
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <div>
+        <ReactTable data={this.props.event} columns={columns} defaultPageSize={10} />
+      </div>
     );
   }
   render() {

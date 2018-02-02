@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'react-bootstrap';
 import { confirmAlert } from 'react-confirm-alert';
+import ReactTable from 'react-table';
 import '../../assets/css/confirm-alert.css';
 
 import History from '../../history';
 import * as Admin from '../../actions/admin';
+import 'react-table/react-table.css';
 
 class Moderatorlist extends Component {
   componentWillMount() {
@@ -22,18 +23,18 @@ class Moderatorlist extends Component {
     }
   }
 
-  renderPromoteButton(data) {
+  renderPromoteButton(id) {
     return (
       <button
         className="btn btn-primary"
         type="submit"
         onClick={() => {
           confirmAlert({
-            title: 'Confirm',
-            message: 'Are you sure you want to promote ' + data.email + '?',
+            title: 'Promote',
+            message: 'Are you sure you want to promote ' + id.email + '?',
             confirmLabel: 'Confirm',
             cancelLabel: 'Cancel',
-            onConfirm: () => this.props.promoteMod(data.id),
+            onConfirm: () => this.props.promoteMod(id.id),
             onCancel: () => History.push('/moderatorlist')
           });
         }}
@@ -43,18 +44,18 @@ class Moderatorlist extends Component {
     );
   }
 
-  renderDemoteButton(data) {
+  renderDemoteButton(id) {
     return (
       <button
         className="btn btn-primary"
         type="submit"
         onClick={() => {
           confirmAlert({
-            title: 'Confirm',
-            message: 'Are you sure you want to demote ' + data.email + '?',
+            title: 'Demote',
+            message: 'Are you sure you want to demote ' + id.email + '?',
             confirmLabel: 'Confirm',
             cancelLabel: 'Cancel',
-            onConfirm: () => this.props.demoteMod(data.id),
+            onConfirm: () => this.props.demoteMod(id.id),
             onCancel: () => History.push('/moderatorlist')
           });
         }}
@@ -64,61 +65,60 @@ class Moderatorlist extends Component {
     );
   }
 
+  renderDeleteButton(id) {
+    return (
+      <button
+        className="btn btn-primary"
+        type="submit"
+        onClick={() => {
+          confirmAlert({
+            title: 'Delete',
+            message: 'Are you sure you want to delete ' + id.email + '?',
+            confirmLabel: 'Confirm',
+            cancelLabel: 'Cancel',
+            onConfirm: () => this.props.deleteMod(id.id),
+            onCancel: () => History.push('/moderatorlist')
+          });
+        }}
+      >
+        Delete
+      </button>
+    );
+  }
+
   renderData() {
     if (!this.props.protected) {
       return <div>Table empty</div>;
     }
-    return (
-      <Table striped hover bordered>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>
-              <center>Activated</center>
-            </th>
-            <th> </th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.protected.map(data => {
-            return (
-              <tr key={data.id}>
-                <td>{data.id}</td>
-                <td>{data.email}</td>
-                <td>{data.admin ? 'admin' : 'moderator'}</td>
-                <td>
-                  <center>{data.activated ? 'x' : 'o'}</center>
-                </td>
-                <td align="center">
-                  {data.admin ? this.renderDemoteButton(data) : this.renderPromoteButton(data)}
-                </td>
-                <td align="center">
-                  <button
-                    className="btn btn-primary"
-                    type="submit"
-                    onClick={() => {
-                      confirmAlert({
-                        title: 'Confirm',
-                        message: 'Are you sure you want to delete ' + data.email + '?',
-                        confirmLabel: 'Confirm',
-                        cancelLabel: 'Cancel',
-                        onConfirm: () => this.props.deleteMod(data.id),
-                        onCancel: () => History.push('/moderatorlist')
-                      });
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
-    );
+    const columns = [
+      {
+        Header: 'Email',
+        accessor: 'email'
+      },
+      {
+        Header: 'Admin',
+        accessor: 'admin',
+        Cell: props => (props.value ? 'admin' : 'moderator')
+      },
+      {
+        Header: 'Activated',
+        accessor: 'activated',
+        Cell: props => (props.value ? 'X' : 'O')
+      },
+      {
+        Header: ' ',
+        accessor: 'admin',
+        // prettier-ignore
+        Cell: props => (props.value ? this.renderDemoteButton(props.row) : this.renderPromoteButton(props.row))
+      },
+      {
+        Header: ' ',
+        accessor: 'id',
+        Cell: props => this.renderDeleteButton(props.row)
+      }
+    ];
+
+    return <ReactTable data={this.props.protected} columns={columns} defaultPageSize={10} />;
   }
 
   render() {

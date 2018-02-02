@@ -16,6 +16,9 @@ class Header extends Component {
           <div className="headerContentLogoLeft">
             <img src={logo} alt="logo" />
           </div>
+          <div className="headerContentLogoRight">
+            <img src={logo} alt="logo" />
+          </div>
           <div className="headerContent">
             <Nav justified bsStyle="pills" activeKey={currentPage}>
               <NavItem eventKey="/" href="/">
@@ -36,14 +39,17 @@ class Header extends Component {
               </NavDropdown>
             </Nav>
           </div>
-          <div className="headerContentLogoRight">
-            <img src={logo} alt="logo" />
-          </div>
         </div>
       );
     } else if (admin === 'false') {
       return (
         <div className="headerBar">
+          <div className="headerContentLogoLeft">
+            <img src={logo} alt="logo" />
+          </div>
+          <div className="headerContentLogoRight">
+            <img src={logo} alt="logo" />
+          </div>
           <div className="headerContent">
             <Nav justified bsStyle="pills" activeKey={currentPage}>
               <NavItem eventKey="/" href="/">
@@ -66,6 +72,12 @@ class Header extends Component {
     } else {
       return (
         <div className="headerBar">
+          <div className="headerContentLogoLeft">
+            <img src={logo} alt="logo" />
+          </div>
+          <div className="headerContentLogoRight">
+            <img src={logo} alt="logo" />
+          </div>
           <div className="headerContent">
             <Nav justified bsStyle="pills" activeKey={currentPage}>
               <NavItem eventKey="/" href="/">

@@ -4,7 +4,7 @@ import '../assets/css/footer.css';
 
 class Footer extends Component {
   render() {
-    return <div className="footerSpace">asdasdasdasdasdasdasd</div>;
+    return <div className="footerSpace">WhappuApp Adminpanel</div>;
   }
 }
 
