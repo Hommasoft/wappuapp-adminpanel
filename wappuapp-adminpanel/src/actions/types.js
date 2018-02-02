@@ -24,3 +24,4 @@ export const CHANGE_CITY = 'change_city';
 export const CHANGE_SORT = 'change_sort';
 export const CHANGE_TYPE = 'change_type';
 export const MODLIST_ERROR = 'modlist_error';
+export const APPEND_FEED = 'append_feed';

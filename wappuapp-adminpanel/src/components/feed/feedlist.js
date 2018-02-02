@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListGroup, DropdownButton, MenuItem, Row } from 'react-bootstrap';
+import { ListGroup, DropdownButton, MenuItem, Row, Button } from 'react-bootstrap';
 
 import * as Feed from '../../actions/feed';
 import * as Filters from '../../actions/filters';
@@ -17,6 +17,7 @@ class FeedList extends Component {
     this.changeCity = this.changeCity.bind(this);
     this.changeSort = this.changeSort.bind(this);
     this.changeType = this.changeType.bind(this);
+    this.getMoreFeed = this.getMoreFeed.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +50,10 @@ class FeedList extends Component {
 
   banUserid(uuid) {
     this.props.banUser(uuid);
+  }
+
+  getMoreFeed() {
+    this.props.fetchMoreFeed();
   }
 
   renderFeed(feedListState) {
@@ -110,6 +115,9 @@ class FeedList extends Component {
           </DropdownButton>
         </Row>
         <Row>{this.renderFeed(this.props.feedListState)}</Row>
+        <Row className="center-block">
+          <Button onClick={this.getMoreFeed}>Load more feed</Button>
+        </Row>
       </div>
     );
   }
