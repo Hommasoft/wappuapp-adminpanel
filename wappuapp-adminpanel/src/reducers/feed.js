@@ -6,7 +6,8 @@ import {
   REMOVE_FEED_ITEM,
   BAN_USER,
   UNBAN_USER,
-  SET_CITIES
+  SET_CITIES,
+  APPEND_FEED
 } from '../actions/types';
 import loadingStates from '../constants/loadingstates';
 
@@ -48,6 +49,11 @@ export const feed = (state = initialState, action) => {
       return Object.assign({}, state, {
         cities: action.cities
       });
+    case APPEND_FEED:
+      return Object.assign({}, state, {
+        feed: [...state.feed, ...action.feed]
+      });
+
     default:
       return state;
   }
