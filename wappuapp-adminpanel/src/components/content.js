@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Well } from 'react-bootstrap';
 
 import '../assets/css/content.css';
 
