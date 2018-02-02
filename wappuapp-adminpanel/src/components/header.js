@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 import History from '../history';
+import '../assets/css/header.css';
 
 class Header extends Component {
   render() {

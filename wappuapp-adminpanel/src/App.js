@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Col, Jumbotron, Row, Grid, Well } from 'react-bootstrap';
+import { Col, Jumbotron, Row, Grid } from 'react-bootstrap';
 
 import Header from './components/header';
 import Content from './components/content';
+
+import './assets/css/index.css';
 
 class App extends Component {
   render() {
