@@ -76,7 +76,7 @@ class FeedList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="feedContainer">
         <Row className="filters">
           <DropdownButton title="City" id="city">
             <MenuItem key="all" eventKey={0} onSelect={this.changeCity}>
