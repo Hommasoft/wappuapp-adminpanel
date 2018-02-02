@@ -75,6 +75,7 @@ class FeedList extends Component {
   }
 
   render() {
+    const cities = this.props.cities;
     return (
       <div className="feedContainer">
         <Row className="filters">
@@ -82,7 +83,7 @@ class FeedList extends Component {
             <MenuItem key="all" eventKey={0} onSelect={this.changeCity}>
               All
             </MenuItem>
-            {this.props.cities.map(city => (
+            {cities.map(city => (
               <MenuItem key={city.id} eventKey={city.id} onSelect={this.changeCity}>
                 {city.name}
               </MenuItem>

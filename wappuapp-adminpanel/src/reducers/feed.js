@@ -35,13 +35,13 @@ export const feed = (state = initialState, action) => {
         listState: loadingStates.FAILED
       });
     case REMOVE_FEED_ITEM:
-      return {
+      return Object.assign({}, state, {
         feed: state.feed.filter(item => action.item !== item.id)
-      };
+      });
     case BAN_USER:
-      return {
+      return Object.assign({}, state, {
         feed: state.feed.filter(item => action.uuid !== item.author.id)
-      };
+      });
     case UNBAN_USER:
       return state;
     case SET_CITIES:

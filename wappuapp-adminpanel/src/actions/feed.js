@@ -30,7 +30,7 @@ const fetchFeed = () => {
 const fetchCities = () => {
   return async dispatch => {
     try {
-      const response = await api.get({ url: 'cities/' });
+      const response = await api.get({ url: 'cities' });
       dispatch({ type: SET_CITIES, cities: response.data });
     } catch (error) {
       console.log(error);
