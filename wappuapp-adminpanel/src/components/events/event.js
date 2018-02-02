@@ -28,7 +28,7 @@ class Events extends Component {
       return <div>No events in selected city</div>;
     }
     return (
-      <Table striped hover>
+      <Table striped hover bordered>
         <thead>
           <tr>
             <th>Code</th>
