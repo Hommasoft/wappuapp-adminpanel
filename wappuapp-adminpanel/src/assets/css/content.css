@@ -1,8 +1,9 @@
 .contentSpace {
   position: relative;
   width: 100%;
+  border-radius: 20px;
+  margin-top: -3px;
   border: 3px solid black;
-  border-top: 0px;
 }
 
 .contentContent {
@@ -12,8 +13,9 @@
   left: 0px;
   right: 0px;
   background-color: white;
+  border-radius: 20px;
   border: 3px solid black;
-  border-top: 0px;
   margin-bottom: 15px;
   padding: 10px;
+  margin-top: -3px;
 }
