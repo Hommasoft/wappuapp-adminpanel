@@ -6,8 +6,8 @@ import '../assets/css/content.css';
 class Content extends Component {
   render() {
     return (
-      <div>
-        <Well>{this.props.data}</Well>
+      <div className="contentSpace">
+        <div className="contentContent">{this.props.data}</div>
       </div>
     );
   }

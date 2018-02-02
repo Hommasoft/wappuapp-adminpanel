@@ -1,0 +1,8 @@
+.footerSpace {
+  position: relative;
+  width: 100%;
+  border: 3px solid black;
+  border-top: 0px;
+  background-color: gray;
+  text-align: center;
+}

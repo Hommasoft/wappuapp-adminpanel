@@ -3,24 +3,28 @@ import { Col, Row, Grid } from 'react-bootstrap';
 
 import Header from './components/header';
 import Content from './components/content';
+import Footer from './components/footer';
 
 import './assets/css/index.css';
 
 class App extends Component {
   render() {
     return (
-      <Grid fluid>
+      <Grid fluid className="data-container">
         <Row>
-          <Col md={12}>
+          <Col>
             <Header />
           </Col>
         </Row>
         <Row>
-          <Col md={3} />
-          <Col md={6}>
+          <Col>
             <Content data={this.props.children} />
           </Col>
-          <Col md={3} />
+        </Row>
+        <Row>
+          <Col>
+            <Footer />
+          </Col>
         </Row>
       </Grid>
     );

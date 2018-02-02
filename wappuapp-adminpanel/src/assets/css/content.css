@@ -1,0 +1,18 @@
+.contentSpace {
+  position: relative;
+  width: 100%;
+  border: 3px solid black;
+  border-top: 0px;
+}
+
+.contentContent {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  left: 0px;
+  right: 0px;
+  background-color: white;
+  border: 3px solid black;
+  border-top: 0px;
+  margin-bottom: 15px;
+}
