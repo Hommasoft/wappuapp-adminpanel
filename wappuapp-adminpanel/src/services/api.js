@@ -17,6 +17,7 @@ const request = async (method, opts) => {
       authorization: localStorage.getItem('token')
     }
   };
+  console.log(req);
   try {
     const response = await api.request(req);
     return response;
