@@ -15,11 +15,11 @@ class Moderatorlist extends Component {
 
   renderError() {
     if (this.props.errorMessage) {
-      return (
-        <div className="alert alert-danger">
-          <string>Error: {this.props.errorMessage}</string>
-        </div>
-      );
+      if (this.props.errorMessage.error) {
+        return <div className="alert alert-danger">{this.props.errorMessage.error}</div>;
+      } else {
+        return <div className="alert alert-danger">Error: {this.props.errorMessage}</div>;
+      }
     }
   }
 
@@ -103,7 +103,7 @@ class Moderatorlist extends Component {
       {
         Header: 'Activated',
         accessor: 'activated',
-        Cell: props => (props.value ? 'X' : 'O')
+        Cell: props => <center>{props.value ? 'X' : 'O'}</center>
       },
       {
         Header: ' ',

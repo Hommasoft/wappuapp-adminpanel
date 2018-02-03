@@ -85,7 +85,8 @@ class Events extends Component {
       },
       {
         Header: 'Show',
-        accessor: 'show'
+        accessor: 'show',
+        Cell: props => <center>{props.value ? 'X' : ' '}</center>
       },
       {
         Header: ' ',
