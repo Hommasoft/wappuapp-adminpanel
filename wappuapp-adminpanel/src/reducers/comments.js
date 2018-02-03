@@ -33,9 +33,9 @@ export const comments = (state = initialState, action) => {
         listState: loadingStates.FAILED
       });
     case REMOVE_COMMENT:
-      return {
+      return Object.assign({}, state, {
         comments: state.comments.filter(item => action.item !== item.id)
-      };
+      });
     default:
       return state;
   }

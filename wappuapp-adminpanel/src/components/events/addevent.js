@@ -183,7 +183,7 @@ const validate = values => {
     errors.start_time = 'Wrong format';
   }
   if (values.end_time && !isISO8601(values.end_time)) {
-    errors.start_time = 'Wrong format';
+    errors.end_time = 'Wrong format';
   }
   return errors;
 };
