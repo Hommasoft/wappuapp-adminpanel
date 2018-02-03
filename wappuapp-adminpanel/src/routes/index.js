@@ -14,6 +14,7 @@ import AccountPage from '../components/auth/accountpage';
 import Events from '../components/events/event';
 import AddEvent from '../components/events/addevent';
 import UpdateEvent from '../components/events/updateevent';
+import ForgottenPassword from '../components/auth/forgottenpassword';
 
 const Routes = () => {
   return (
@@ -29,6 +30,7 @@ const Routes = () => {
       <Route exact path="/event/:id" component={RequireAuth(Events)} />
       <Route exact path="/addevent" component={RequireAuth(AddEvent)} />
       <Route exact path="/updateevent/:id" component={UpdateEvent} />
+      <Route exact path="/forgottenpassword" component={ForgottenPassword} />
     </App>
   );
 };
