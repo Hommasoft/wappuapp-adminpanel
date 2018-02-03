@@ -31,6 +31,17 @@ export const addmoderator = ({ email }) => {
   };
 };
 
+export const forgottenpassword = ({ email }) => {
+  return async dispatch => {
+    try {
+      await api.get({ url: 'forgottenpassword/' + email });
+      History.push('/');
+    } catch (err) {
+      dispatch(authError(err));
+    }
+  };
+};
+
 export const changepassword = ({ newpassword, oldpassword }) => {
   return async dispatch => {
     try {
