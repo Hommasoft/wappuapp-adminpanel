@@ -115,8 +115,10 @@ class FeedList extends Component {
           </DropdownButton>
         </Row>
         <Row>{this.renderFeed(this.props.feedListState)}</Row>
-        <Row className="center-block">
-          <Button onClick={this.getMoreFeed}>Load more feed</Button>
+        <Row className="moreFeedButton">
+          <Button onClick={this.getMoreFeed} disabled={this.props.moreFeedButton}>
+            Load more feed
+          </Button>
         </Row>
       </div>
     );
@@ -126,7 +128,8 @@ const mapStateToProps = state => {
   return {
     feed: state.feed.feed,
     feedListState: state.feed.listState,
-    cities: state.feed.cities
+    cities: state.feed.cities,
+    moreFeedButton: state.feed.moreFeedButton
   };
 };
 

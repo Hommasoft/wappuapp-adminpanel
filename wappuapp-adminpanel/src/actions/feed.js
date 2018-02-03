@@ -9,7 +9,9 @@ import {
   BAN_USER,
   UNBAN_USER,
   SET_CITIES,
-  APPEND_FEED
+  APPEND_FEED,
+  GET_MORE_FEED_REQUEST,
+  GET_MORE_FEED_SUCCESS
 } from './types';
 
 const fetchFeed = () => {
@@ -30,12 +32,14 @@ const fetchFeed = () => {
 
 const fetchMoreFeed = () => {
   return async (dispatch, getState) => {
+    dispatch({ type: GET_MORE_FEED_REQUEST });
     let cityId = '?cityId=' + getState().filters.city;
     let sort = '&sort=' + getState().filters.sort;
     let type = getState().filters.type;
     let lastId = '&beforeId=' + getState().feed.feed[getState().feed.feed.length - 1].id;
     const response = await api.get({ url: 'feed' + cityId + lastId + sort + type });
     dispatch({ type: APPEND_FEED, feed: response.data });
+    dispatch({ type: GET_MORE_FEED_SUCCESS });
   };
 };
 
