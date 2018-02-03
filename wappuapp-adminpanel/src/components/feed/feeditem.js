@@ -113,7 +113,7 @@ class FeedItem extends Component {
                 <h3 className="itemTime">{ago}</h3>
               </Col>
             </Row>
-            <Row>
+            <Row className="feedTextContainer">
               <Col>
                 {isItemImage ? (
                   <img className="itemImage" src={imgUrl} alt="Feed Item" />
