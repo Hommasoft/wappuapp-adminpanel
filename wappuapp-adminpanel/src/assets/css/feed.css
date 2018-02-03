@@ -34,9 +34,7 @@
 }
 
 .itemImage {
-  width: 100%; 
-  padding-left: 3%;
-  padding-right: 3%; 
+  width: 100%;  
 }
 
 .itemComments {
@@ -68,4 +66,10 @@
 
 .feedContainer {
   padding: 5%
+}
+
+.feedTextContainer {
+  word-wrap: break-word;
+  margin-left: 2%;
+  margin-right: 2%;
 }

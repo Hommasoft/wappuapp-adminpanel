@@ -8,7 +8,10 @@ import {
   REMOVE_FEED_ITEM,
   BAN_USER,
   UNBAN_USER,
-  SET_CITIES
+  SET_CITIES,
+  APPEND_FEED,
+  GET_MORE_FEED_REQUEST,
+  GET_MORE_FEED_SUCCESS
 } from './types';
 
 const fetchFeed = () => {
@@ -24,6 +27,19 @@ const fetchFeed = () => {
     } catch (error) {
       dispatch({ type: GET_FEED_FAILURE, error: true, payload: error });
     }
+  };
+};
+
+const fetchMoreFeed = () => {
+  return async (dispatch, getState) => {
+    dispatch({ type: GET_MORE_FEED_REQUEST });
+    let cityId = '?cityId=' + getState().filters.city;
+    let sort = '&sort=' + getState().filters.sort;
+    let type = getState().filters.type;
+    let lastId = '&beforeId=' + getState().feed.feed[getState().feed.feed.length - 1].id;
+    const response = await api.get({ url: 'feed' + cityId + lastId + sort + type });
+    dispatch({ type: APPEND_FEED, feed: response.data });
+    dispatch({ type: GET_MORE_FEED_SUCCESS });
   };
 };
 
@@ -71,4 +87,4 @@ const unbanUser = uuid => {
   };
 };
 
-export { fetchFeed, removeFeedItem, banUser, unbanUser, fetchCities };
+export { fetchFeed, removeFeedItem, banUser, unbanUser, fetchCities, fetchMoreFeed };

@@ -6,14 +6,18 @@ import {
   REMOVE_FEED_ITEM,
   BAN_USER,
   UNBAN_USER,
-  SET_CITIES
+  SET_CITIES,
+  APPEND_FEED,
+  GET_MORE_FEED_REQUEST,
+  GET_MORE_FEED_SUCCESS
 } from '../actions/types';
 import loadingStates from '../constants/loadingstates';
 
 const initialState = {
   feed: [],
   listState: loadingStates.NONE,
-  cities: []
+  cities: [],
+  moreFeedButton: false
 };
 
 export const feed = (state = initialState, action) => {
@@ -47,6 +51,18 @@ export const feed = (state = initialState, action) => {
     case SET_CITIES:
       return Object.assign({}, state, {
         cities: action.cities
+      });
+    case APPEND_FEED:
+      return Object.assign({}, state, {
+        feed: [...state.feed, ...action.feed]
+      });
+    case GET_MORE_FEED_REQUEST:
+      return Object.assign({}, state, {
+        moreFeedButton: true
+      });
+    case GET_MORE_FEED_SUCCESS:
+      return Object.assign({}, state, {
+        moreFeedButton: false
       });
     default:
       return state;
