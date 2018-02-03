@@ -48,7 +48,7 @@ class Events extends Component {
               confirmLabel: 'Confirm',
               cancelLabel: 'Cancel',
               onConfirm: () => this.props.deleteevent(id.id),
-              onCancel: () => History.push('/event')
+              onCancel: () => History.push('/event/0')
             });
           }}
         >

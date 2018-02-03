@@ -38,7 +38,7 @@ export const addevent = ({
           location
         }
       });
-      History.push('/event');
+      History.push('/event/0');
     } catch (err) {
       dispatch(eventError(err));
     }
@@ -61,7 +61,7 @@ export function deleteevent(id) {
   return async dispatch => {
     try {
       await api.del({ url: 'deleteevent/' + id });
-      History.push('/event');
+      History.push('/event/0');
     } catch (err) {
       dispatch(eventError(err));
     }
@@ -84,7 +84,6 @@ export const updateevent = ({
   city_id,
   location
 }) => {
-  console.log(location);
   return async dispatch => {
     try {
       await api.post({
