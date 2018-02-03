@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListGroup, DropdownButton, MenuItem, Row, Button } from 'react-bootstrap';
+import { ListGroup, Row, Button } from 'react-bootstrap';
 
 import * as Feed from '../../actions/feed';
-import * as Filters from '../../actions/filters';
 import loadingStates from '../../constants/loadingstates';
 
 import FeedItem from './feeditem';
+import Filters from './filters';
 
 class FeedList extends Component {
   constructor(props) {
@@ -14,34 +14,12 @@ class FeedList extends Component {
     this.renderFeed = this.renderFeed.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.banUserid = this.banUserid.bind(this);
-    this.changeCity = this.changeCity.bind(this);
-    this.changeSort = this.changeSort.bind(this);
-    this.changeType = this.changeType.bind(this);
     this.getMoreFeed = this.getMoreFeed.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchFeed();
     this.props.fetchCities();
-  }
-
-  changeSort(sortType) {
-    this.props.changeSort(sortType);
-    this.props.fetchFeed();
-  }
-
-  changeType(feedType) {
-    if (!feedType) {
-      this.props.changeType('');
-    } else {
-      this.props.changeType('&type=' + feedType);
-    }
-    this.props.fetchFeed();
-  }
-
-  changeCity(cityId) {
-    this.props.changeCity(cityId);
-    this.props.fetchFeed();
   }
 
   removeItem(id) {
@@ -63,7 +41,12 @@ class FeedList extends Component {
       case loadingStates.FAILED:
         return <p>ERROR</p>;
       default:
-        let items = this.props.feed;
+        let items;
+        if (!this.props.reportsVisible) {
+          items = this.props.feed;
+        } else {
+          items = this.props.reports;
+        }
         return (
           <ListGroup>
             {items.map(item => (
@@ -80,40 +63,9 @@ class FeedList extends Component {
   }
 
   render() {
-    const cities = this.props.cities;
     return (
       <div className="feedContainer">
-        <Row className="filters">
-          <DropdownButton title="City" id="city">
-            <MenuItem key="all" eventKey={0} onSelect={this.changeCity}>
-              All
-            </MenuItem>
-            {cities.map(city => (
-              <MenuItem key={city.id} eventKey={city.id} onSelect={this.changeCity}>
-                {city.name}
-              </MenuItem>
-            ))}
-          </DropdownButton>
-          <DropdownButton title="Sort" id="sort">
-            <MenuItem key="new" eventKey="new" onSelect={this.changeSort}>
-              New
-            </MenuItem>
-            <MenuItem key="hot" eventKey="hot" onSelect={this.changeSort}>
-              Hot
-            </MenuItem>
-          </DropdownButton>
-          <DropdownButton title="Type" id="type">
-            <MenuItem key="all" onSelect={this.changeType}>
-              All
-            </MenuItem>
-            <MenuItem key="text" eventKey="TEXT" onSelect={this.changeType}>
-              Text
-            </MenuItem>
-            <MenuItem key="image" eventKey="IMAGE" onSelect={this.changeType}>
-              Image
-            </MenuItem>
-          </DropdownButton>
-        </Row>
+        <Filters cities={this.props.cities} fetchFeed={this.props.fetchFeed} />
         <Row>{this.renderFeed(this.props.feedListState)}</Row>
         <Row className="moreFeedButton">
           <Button onClick={this.getMoreFeed} disabled={this.props.moreFeedButton}>
@@ -129,13 +81,10 @@ const mapStateToProps = state => {
     feed: state.feed.feed,
     feedListState: state.feed.listState,
     cities: state.feed.cities,
-    moreFeedButton: state.feed.moreFeedButton
+    moreFeedButton: state.feed.moreFeedButton,
+    reports: state.filters.reports,
+    reportsVisible: state.filters.reportsVisible
   };
 };
 
-const mapDispatchToProps = {
-  ...Feed,
-  ...Filters
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FeedList);
+export default connect(mapStateToProps, Feed)(FeedList);
