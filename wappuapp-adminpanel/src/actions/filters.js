@@ -21,6 +21,16 @@ export const fetchReports = () => {
   };
 };
 
+export const sendSystemMsg = msg => {
+  return async dispatch => {
+    try {
+      await api.post({ url: 'admin/actions', data: { text: msg, user: 'web', type: 'TEXT' } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const changeToFeed = () => {
   return async dispatch => {
     dispatch({ type: CHANGE_TO_FEED });
