@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { DropdownButton, MenuItem, Row } from 'react-bootstrap';
+import {
+  DropdownButton,
+  MenuItem,
+  Row,
+  Modal,
+  Button,
+  FormControl,
+  FormGroup,
+  ControlLabel
+} from 'react-bootstrap';
 
 import * as Filt from '../../actions/filters';
 
@@ -11,6 +20,12 @@ class Filters extends Component {
     this.changeSort = this.changeSort.bind(this);
     this.changeType = this.changeType.bind(this);
     this.changeReports = this.changeReports.bind(this);
+    this.closeMsgBox = this.closeMsgBox.bind(this);
+    this.showMsgBox = this.showMsgBox.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      showModal: false
+    };
   }
 
   changeSort(sortType) {
@@ -31,12 +46,28 @@ class Filters extends Component {
     this.props.changeCity(cityId);
     this.props.fetchFeed();
   }
+
   changeReports(feedType) {
     if (feedType === 'reports') {
       this.props.fetchReports();
     } else {
       this.props.changeToFeed();
     }
+  }
+
+  showMsgBox() {
+    this.setState({ showModal: true });
+  }
+
+  closeMsgBox() {
+    this.setState({ showModal: false });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.sendSystemMsg(event.target[0].value);
+    this.setState({ showModal: false });
+    this.props.fetchFeed();
   }
 
   render() {
@@ -79,6 +110,23 @@ class Filters extends Component {
             Reports
           </MenuItem>
         </DropdownButton>
+        <Button onClick={this.showMsgBox}>Send message</Button>
+        <Modal show={this.state.showModal} onHide={this.closeMsgBox}>
+          <Modal.Header closeButton>
+            <Modal.Title>Send system message</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <ControlLabel>Text</ControlLabel>
+                <FormControl type="text" placeholder="Hello World!" />
+              </FormGroup>
+              <FormGroup>
+                <Button type="submit">Submit</Button>
+              </FormGroup>
+            </form>
+          </Modal.Body>
+        </Modal>
       </Row>
     );
   }
