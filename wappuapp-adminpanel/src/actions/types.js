@@ -27,3 +27,6 @@ export const MODLIST_ERROR = 'modlist_error';
 export const APPEND_FEED = 'append_feed';
 export const GET_MORE_FEED_REQUEST = 'get_more_feed_request';
 export const GET_MORE_FEED_SUCCESS = 'get_more_feed_success';
+export const SET_REPORTS = 'set_reports';
+export const CHANGE_TO_FEED = 'change_to_feed';
+export const CHANGE_TO_REPORTS = 'change_to_reports';

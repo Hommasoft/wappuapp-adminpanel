@@ -1,9 +1,18 @@
-import { CHANGE_CITY, CHANGE_SORT, CHANGE_TYPE } from '../actions/types';
+import {
+  CHANGE_CITY,
+  CHANGE_SORT,
+  CHANGE_TYPE,
+  SET_REPORTS,
+  CHANGE_TO_FEED,
+  CHANGE_TO_REPORTS
+} from '../actions/types';
 
 const initialState = {
   city: 0,
   sort: 'new',
-  type: ''
+  type: '',
+  reports: [],
+  reportsVisible: false
 };
 
 export const filters = (state = initialState, action) => {
@@ -19,6 +28,18 @@ export const filters = (state = initialState, action) => {
     case CHANGE_TYPE:
       return Object.assign({}, state, {
         type: action.feedtype
+      });
+    case SET_REPORTS:
+      return Object.assign({}, state, {
+        reports: action.reports[1]
+      });
+    case CHANGE_TO_FEED:
+      return Object.assign({}, state, {
+        reportsVisible: false
+      });
+    case CHANGE_TO_REPORTS:
+      return Object.assign({}, state, {
+        reportsVisible: true
       });
     default:
       return state;
