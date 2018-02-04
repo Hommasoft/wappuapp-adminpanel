@@ -120,9 +120,6 @@ class Filters extends Component {
               <FormGroup>
                 <ControlLabel>City</ControlLabel>
                 <FormControl componentClass="select">
-                  <option key={0} value={0}>
-                    All
-                  </option>
                   {this.props.cities.map(city => (
                     <option key={city.id} value={city.id}>
                       {city.name}
