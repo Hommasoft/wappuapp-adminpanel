@@ -34,16 +34,12 @@ class Filters extends Component {
   }
 
   changeType(feedType) {
-    if (!feedType) {
-      this.props.changeType('');
-    } else {
-      this.props.changeType('&type=' + feedType);
-    }
+    this.props.changeType(feedType);
     this.props.fetchFeed();
   }
 
-  changeCity(cityId) {
-    this.props.changeCity(cityId);
+  changeCity(city) {
+    this.props.changeCity(city);
     this.props.fetchFeed();
   }
 
@@ -65,7 +61,6 @@ class Filters extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(event.target[1].value);
     this.props.sendSystemMsg(event.target[0].value, event.target[1].value);
     this.setState({ showModal: false });
     this.props.fetchFeed();
@@ -74,26 +69,26 @@ class Filters extends Component {
   render() {
     return (
       <Row className="filters">
-        <DropdownButton title="City" id="city">
-          <MenuItem key="all" eventKey={0} onSelect={this.changeCity}>
+        <DropdownButton title={this.props.city.name} id="city">
+          <MenuItem key="all" eventKey={{ id: 0, name: 'All' }} onSelect={this.changeCity}>
             All
           </MenuItem>
           {this.props.cities.map(city => (
-            <MenuItem key={city.id} eventKey={city.id} onSelect={this.changeCity}>
+            <MenuItem key={city.id} eventKey={city} onSelect={this.changeCity}>
               {city.name}
             </MenuItem>
           ))}
         </DropdownButton>
-        <DropdownButton title="Sort" id="sort">
-          <MenuItem key="new" eventKey="new" onSelect={this.changeSort}>
+        <DropdownButton title={this.props.sort} id="sort">
+          <MenuItem key="new" eventKey="New" onSelect={this.changeSort}>
             New
           </MenuItem>
-          <MenuItem key="hot" eventKey="hot" onSelect={this.changeSort}>
+          <MenuItem key="hot" eventKey="Hot" onSelect={this.changeSort}>
             Hot
           </MenuItem>
         </DropdownButton>
-        <DropdownButton title="Type" id="type">
-          <MenuItem key="all" onSelect={this.changeType}>
+        <DropdownButton title={this.props.type} id="type">
+          <MenuItem key="all" eventKey="Type" onSelect={this.changeType}>
             All
           </MenuItem>
           <MenuItem key="text" eventKey="TEXT" onSelect={this.changeType}>
@@ -125,7 +120,11 @@ class Filters extends Component {
               <FormGroup>
                 <ControlLabel>City</ControlLabel>
                 <FormControl componentClass="select">
-                  {this.props.cities.map(city => <option value={city.id}>{city.name}</option>)}
+                  {this.props.cities.map(city => (
+                    <option key={city.id} value={city.id}>
+                      {city.name}
+                    </option>
+                  ))}
                 </FormControl>
               </FormGroup>
               <FormGroup>
