@@ -55,6 +55,7 @@ class FeedList extends Component {
                 key={item.id}
                 removeItem={this.removeItem}
                 banUser={this.banUserid}
+                renderReports={this.props.reportsVisible}
               />
             ))}
           </ListGroup>
