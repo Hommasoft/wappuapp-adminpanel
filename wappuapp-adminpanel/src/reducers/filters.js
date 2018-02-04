@@ -9,9 +9,9 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  city: 0,
-  sort: 'new',
-  type: '',
+  city: { id: 0, name: 'All' },
+  sort: 'New',
+  type: 'Type',
   reports: [],
   reportsVisible: false
 };
@@ -20,7 +20,7 @@ export const filters = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_CITY:
       return Object.assign({}, state, {
-        city: action.cityId
+        city: action.city
       });
     case CHANGE_SORT:
       return Object.assign({}, state, {

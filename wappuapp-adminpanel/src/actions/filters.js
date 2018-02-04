@@ -54,7 +54,7 @@ export const changeToFeed = () => {
 
 export const changeCity = city => {
   return async dispatch => {
-    await dispatch({ type: CHANGE_CITY, cityId: city });
+    await dispatch({ type: CHANGE_CITY, city: city });
   };
 };
 
