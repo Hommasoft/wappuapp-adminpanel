@@ -37,19 +37,24 @@ const fetchFeed = () => {
 
 const fetchMoreFeed = () => {
   return async (dispatch, getState) => {
-    dispatch({ type: GET_MORE_FEED_REQUEST });
-    let cityId = '?cityId=' + getState().filters.city.id;
-    let sort = '&sort=' + getState().filters.sort.toLowerCase();
-    let type;
-    if (getState().filters.type === 'Type') {
-      type = '';
-    } else {
-      type = '&type=' + getState().filters.type;
+    try {
+      dispatch({ type: GET_MORE_FEED_REQUEST });
+      let cityId = '?cityId=' + getState().filters.city.id;
+      let sort = '&sort=' + getState().filters.sort.toLowerCase();
+      let type;
+      if (getState().filters.type === 'Type') {
+        type = '';
+      } else {
+        type = '&type=' + getState().filters.type;
+      }
+      let lastId = '&beforeId=' + getState().feed.feed[getState().feed.feed.length - 1].id;
+      const response = await api.get({ url: 'feed' + cityId + lastId + sort + type });
+      dispatch({ type: APPEND_FEED, feed: response.data });
+      dispatch({ type: GET_MORE_FEED_SUCCESS });
+    } catch (error) {
+      dispatch({ type: GET_MORE_FEED_SUCCESS });
+      console.log(error);
     }
-    let lastId = '&beforeId=' + getState().feed.feed[getState().feed.feed.length - 1].id;
-    const response = await api.get({ url: 'feed' + cityId + lastId + sort + type });
-    dispatch({ type: APPEND_FEED, feed: response.data });
-    dispatch({ type: GET_MORE_FEED_SUCCESS });
   };
 };
 
