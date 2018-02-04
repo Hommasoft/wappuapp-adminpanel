@@ -65,7 +65,8 @@ class Filters extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.sendSystemMsg(event.target[0].value);
+    console.log(event.target[1].value);
+    this.props.sendSystemMsg(event.target[0].value, event.target[1].value);
     this.setState({ showModal: false });
     this.props.fetchFeed();
   }
@@ -120,6 +121,12 @@ class Filters extends Component {
               <FormGroup>
                 <ControlLabel>Text</ControlLabel>
                 <FormControl type="text" placeholder="Hello World!" />
+              </FormGroup>
+              <FormGroup>
+                <ControlLabel>City</ControlLabel>
+                <FormControl componentClass="select">
+                  {this.props.cities.map(city => <option value={city.id}>{city.name}</option>)}
+                </FormControl>
               </FormGroup>
               <FormGroup>
                 <Button type="submit">Submit</Button>

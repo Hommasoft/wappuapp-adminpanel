@@ -22,10 +22,13 @@ export const fetchReports = () => {
   };
 };
 
-export const sendSystemMsg = msg => {
+export const sendSystemMsg = (msg, cityId) => {
   return async dispatch => {
     try {
-      await api.post({ url: 'admin/actions', data: { text: msg, user: 'web', type: 'TEXT' } });
+      await api.post({
+        url: 'admin/actions',
+        data: { text: msg, user: 'web', type: 'TEXT', city: cityId }
+      });
     } catch (error) {
       console.log(error);
     }
