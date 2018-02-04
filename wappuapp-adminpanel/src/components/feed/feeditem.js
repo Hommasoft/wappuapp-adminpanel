@@ -50,6 +50,11 @@ class FeedItem extends Component {
     if (nextProps.visibleComment !== this.props.item.id) {
       if (nextState.isVisible !== this.state.isVisible && !nextState.isVisible) {
         return true;
+      } else if (
+        nextProps.renderReports !== this.props.renderReports &&
+        !nextProps.report_description
+      ) {
+        return true;
       } else {
         return false;
       }
