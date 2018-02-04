@@ -45,6 +45,7 @@ class Login extends Component {
             Login
           </button>
         </form>
+        <a href="/forgottenpassword">Forgotten password</a>
       </div>
     );
   }

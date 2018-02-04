@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 import * as Auth from '../../actions/auth';
 
-class ActivateAccount extends Component {
-  handleFormSubmit({ password }) {
-    this.props.activateaccount({ password });
+class ForgottenPassword extends Component {
+  handleFormSubmit({ email }) {
+    this.props.forgottenpassword({ email });
   }
 
   renderError() {
@@ -23,15 +23,15 @@ class ActivateAccount extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <div>Account activation</div>
+        <div>Forgotten password</div>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <fieldset className="form-group">
-            <label>New password:</label>
-            <Field className="form-control" name="password" component="input" type="password" />
+            <label>Email:</label>
+            <Field className="form-control" name="email" component="input" type="text" />
           </fieldset>
           {this.renderError()}
           <button action="submit" className="btn btn-primary">
-            Activate account
+            Send new activation mail
           </button>
         </form>
       </div>
@@ -45,4 +45,4 @@ const mapStateToProps = state => {
 
 export default reduxForm({
   form: 'auth'
-})(connect(mapStateToProps, Auth)(ActivateAccount));
+})(connect(mapStateToProps, Auth)(ForgottenPassword));
