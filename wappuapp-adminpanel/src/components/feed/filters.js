@@ -24,7 +24,8 @@ class Filters extends Component {
     this.showMsgBox = this.showMsgBox.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      showModal: false
+      showModal: false,
+      reportSelect: 'Feed'
     };
   }
 
@@ -44,11 +45,12 @@ class Filters extends Component {
   }
 
   changeReports(feedType) {
-    if (feedType === 'reports') {
+    if (feedType === 'Reports') {
       this.props.fetchReports();
     } else {
       this.props.changeToFeed();
     }
+    this.setState({ reportSelect: feedType });
   }
 
   showMsgBox() {
@@ -98,11 +100,11 @@ class Filters extends Component {
             Image
           </MenuItem>
         </DropdownButton>
-        <DropdownButton title="Select feed" id="feedselect">
-          <MenuItem eventKey="feed" onSelect={this.changeReports}>
+        <DropdownButton title={this.state.reportSelect} id="reportselect">
+          <MenuItem eventKey="Feed" onSelect={this.changeReports}>
             Feed
           </MenuItem>
-          <MenuItem eventKey="reports" onSelect={this.changeReports}>
+          <MenuItem eventKey="Reports" onSelect={this.changeReports}>
             Reports
           </MenuItem>
         </DropdownButton>
