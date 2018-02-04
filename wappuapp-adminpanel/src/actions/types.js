@@ -30,3 +30,4 @@ export const GET_MORE_FEED_SUCCESS = 'get_more_feed_success';
 export const SET_REPORTS = 'set_reports';
 export const CHANGE_TO_FEED = 'change_to_feed';
 export const CHANGE_TO_REPORTS = 'change_to_reports';
+export const RESOLVE_REPORT = 'resolve_report';

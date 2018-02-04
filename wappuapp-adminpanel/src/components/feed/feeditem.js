@@ -8,6 +8,7 @@ import kebabmenu from '../../assets/img/kebabmenu.svg';
 import commentArrowDown from '../../assets/img/ic_keyboard_arrow_down_black_24px.svg';
 import commentArrowUp from '../../assets/img/ic_keyboard_arrow_up_black_24px.svg';
 import * as Comments from '../../actions/comments';
+import { resolveReport } from '../../actions/filters';
 import loadingStates from '../../constants/loadingstates';
 
 import CommentList from './commentlist';
@@ -23,6 +24,7 @@ class FeedItem extends Component {
     this.onClickRemove = this.onClickRemove.bind(this);
     this.onClickBan = this.onClickBan.bind(this);
     this.onClickOpenComments = this.onClickOpenComments.bind(this);
+    this.resolveReport = this.resolveReport.bind(this);
   }
 
   onClickOpenComments() {
@@ -38,6 +40,10 @@ class FeedItem extends Component {
 
   onClickBan() {
     this.props.banUser(this.props.item.author.id);
+  }
+
+  resolveReport() {
+    this.props.resolveReport(this.props.item.report_id);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -73,6 +79,7 @@ class FeedItem extends Component {
 
   render() {
     const { item } = this.props;
+    const renderReports = this.props.renderReports;
     console.log(item);
     let imgUrl;
     let commentComponent = null;
@@ -109,6 +116,7 @@ class FeedItem extends Component {
                 >
                   <MenuItem onSelect={this.onClickRemove}>Delete</MenuItem>
                   <MenuItem onSelect={this.onClickBan}>Ban user</MenuItem>
+                  {renderReports && <MenuItem onSelect={this.resolveReport}>Do nothing</MenuItem>}
                 </DropdownButton>
                 <h3 className="itemTime">{ago}</h3>
               </Col>
@@ -133,6 +141,8 @@ class FeedItem extends Component {
                 </Button>
               </Col>
             </Row>
+            {renderReports && <p>Report description: {item.report_description}</p>}
+            <Row />
           </div>
         </div>
         <div>{commentComponent}</div>
@@ -153,4 +163,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, Comments)(FeedItem);
+const mapDispatchToProps = {
+  ...Comments,
+  resolveReport
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedItem);

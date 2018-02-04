@@ -6,7 +6,8 @@ import {
   CHANGE_TYPE,
   SET_REPORTS,
   CHANGE_TO_REPORTS,
-  CHANGE_TO_FEED
+  CHANGE_TO_FEED,
+  RESOLVE_REPORT
 } from './types';
 
 export const fetchReports = () => {
@@ -31,9 +32,20 @@ export const sendSystemMsg = msg => {
   };
 };
 
+export const resolveReport = report_id => {
+  return async dispatch => {
+    try {
+      await api.put({ url: 'admin/reports/' + report_id, data: { banned: false } });
+      dispatch({ type: RESOLVE_REPORT, id: report_id });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const changeToFeed = () => {
   return async dispatch => {
-    dispatch({ type: CHANGE_TO_FEED });
+    await dispatch({ type: CHANGE_TO_FEED });
   };
 };
 
