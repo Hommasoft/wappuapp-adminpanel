@@ -10,14 +10,62 @@
   "author": "Hommasoft",
   "license": "MIT",
   "homepage": "https://github.com/Hommasoft/wappuapp-adminpanel#readme",
+  "dependencies": {
+    "axios": "0.17.0",
+    "history": "4.7.2",
+    "json": "9.0.6",
+    "moment": "2.19.2",
+    "qs": "6.5.1",
+    "react": "16.0.0",
+    "react-bootstrap": "0.31.5",
+    "react-confirm-alert": "1.0.8",
+    "react-dom": "16.0.0",
+    "react-redux": "5.0.6",
+    "react-router-dom": "4.2.2",
+    "react-scripts": "1.0.14",
+    "react-table": "6.7.6",
+    "redux": "3.7.2",
+    "redux-form": "7.1.2",
+    "redux-thunk": "2.2.0",
+    "validator": "9.3.0"
+  },
   "devDependencies": {
-    "husky": "0.14.3"
+    "husky": "0.14.3",
+    "eslint": "4.8.0",
+    "eslint-config-prettier": "2.6.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-react": "7.4.0",
+    "lint-staged": "4.2.3",
+    "prettier": "1.7.4"
   },
   "scripts": {
-    "start": "cd wappuapp-adminpanel && npm run start",
-    "build": "cd wappuapp-adminpanel && npm run build && cp -r ./build ../build",
-    "postinstall": "cd wappuapp-adminpanel && npm install",
-    "precommit": "cd wappuapp-adminpanel && npm run precommit",
-    "lint": "cd wappuapp-adminpanel && npm run eslint"
+    "precommit": "lint-staged",
+    "eslint": "eslint --ignore-path .gitignore --ext js .",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "gitDir": ".",
+    "linters": {
+      "wappuapp-adminpanel/src/**/*.json": [
+        "prettier --write",
+        "git add"
+      ],
+      "wappuapp-adminpanel/src/**/*.js": [
+        "prettier --write",
+        "eslint",
+        "git add"
+      ]
+    }
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:9000",
+      "pathRewrite": {
+        "^/api": "/api"
+      }
+    }
   }
 }
