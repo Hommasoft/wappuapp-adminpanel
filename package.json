@@ -9,7 +9,6 @@
   },
   "author": "Hommasoft",
   "license": "MIT",
-  "homepage": "https://github.com/Hommasoft/wappuapp-adminpanel#readme",
   "dependencies": {
     "axios": "0.17.0",
     "history": "4.7.2",
@@ -47,13 +46,13 @@
     "eject": "react-scripts eject"
   },
   "lint-staged": {
-    "gitDir": ".",
+    "gitDir": "./",
     "linters": {
-      "wappuapp-adminpanel/src/**/*.json": [
+      "src/**/*.json": [
         "prettier --write",
         "git add"
       ],
-      "wappuapp-adminpanel/src/**/*.js": [
+      "src/**/*.js": [
         "prettier --write",
         "eslint",
         "git add"
