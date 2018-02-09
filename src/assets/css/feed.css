@@ -1,0 +1,75 @@
+.feedItem {
+  margin: 2%;  
+}
+
+.feedItemContainer {
+  border-style: groove;
+  border-width: 3px;
+  border-color: grey;
+  border-radius: 10px;
+  margin-top: 3%;
+}
+
+.itemUser {
+  font-size: 20px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.itemTeam {
+  font-size: 12px;
+  color: grey;
+}
+  
+.itemTime {
+  float: right;
+  color: grey;
+  font-size: 12px;
+  margin-top: 0px;
+  margin-right: 10px;
+}
+  
+.itemText {
+  text-align: center;
+}
+
+.itemImage {
+  width: 100%;  
+}
+
+.itemComments {
+  text-align: right;
+  font-size: 14px;
+  margin-bottom: 0;
+  color: grey;
+}
+
+.itemScore {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.kebabMenu div {
+  float: right;
+}
+
+.commentButton {
+  float: right;
+  border: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.filters div {
+  margin-right: 8px
+}
+
+.feedContainer {
+  padding: 5%
+}
+
+.feedTextContainer {
+  word-wrap: break-word;
+  margin-left: 2%;
+  margin-right: 2%;
+}
